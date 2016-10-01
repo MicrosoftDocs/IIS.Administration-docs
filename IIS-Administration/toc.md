@@ -1,3 +1,5 @@
 # [Index](index.md)
+# [Setup](setup/toc.md)
 # [Security](security/toc.md)
 # [Configuration](configuration/toc.md)
+# [API Explorer](api-explorer/toc.md)

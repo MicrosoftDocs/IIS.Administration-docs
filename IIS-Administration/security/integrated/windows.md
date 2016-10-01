@@ -8,4 +8,4 @@ Out of the box, the Microsoft IIS Administration API utilizes IIS's windows auth
 
 ## Browser Access
 
-Depending on browser settings, users who access the API via the built-in [API Explorer](../../api explorer/toc.md) may notice a login prompt. This is the browser's mechanism authentication with windows credentials. Domain users should include their domain name when specifying their username, for example "contoso\johndoe". 
+Depending on browser settings, users who access the API via the built-in [API Explorer](../../api-explorer/index.md) may notice a login prompt. This is the browser's mechanism authentication with windows credentials. Domain users should include their domain name when specifying their username, for example *contoso\johndoe*. 
