@@ -1,10 +1,10 @@
 ---
-uid: api-explorer/interacting
+uid: api-explorer/resource-manipulation
 ---
 
 # Interacting with Resources
 
-Through the API Explorer resources can be retrieved, updated, created and deleted. The type of interaction is specified by the methods at the top of the navigation panel.
+The API Explorer enables resources to be retrieved, updated, created and deleted. The type of interaction is specified by the methods at the top of the navigation panel.
 
 ![Api Explorer navigation pane][navigation]
 

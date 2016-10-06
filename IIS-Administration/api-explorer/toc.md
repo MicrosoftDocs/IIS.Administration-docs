@@ -1,2 +1,2 @@
 # [API Explorer](index.md)
-# [Interacting](interacting.md)
+# [Resource Manipulation](resource-manipulation.md)
