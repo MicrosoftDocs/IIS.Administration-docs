@@ -4,4 +4,4 @@ The Microsoft IIS Administration API is a REST API that allows consumers to conf
 
 ## Whats New
 
-With the introduction of this new API, IIS is more open than ever. Now IIS can be configured by anything that speaks HTTP. Previously users had to be on Windows machines to do any configuration or monitoring of IIS, but with this API even mobile devices are treated equally. Having an HTTP endpoint for IIS allows web based GUIs to take advantage. This is exactly what we're doing with the web based manager at https://manage.iis.net.
+This API allows IIS to be more open than ever by enabling IIS to be configured by anything that speaks HTTP. Previously users had to be on Windows machines to do any configuration or monitoring of IIS, but with this API even mobile devices are treated equally. Having this HTTP endpoint for IIS allows web based GUIs to take advantage, which is exactly what we're doing with the web based manager at https://manage.iis.net.
