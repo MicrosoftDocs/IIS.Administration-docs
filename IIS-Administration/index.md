@@ -1,1 +1,7 @@
-# Index test file for Open Publishing
+# Microsoft IIS Administration API
+
+The Microsoft IIS Administration API is a REST API that allows consumers to configure and monitor their IIS web servers. With the API installed on your IIS machine, you can configure your IIS instance with any HTTP client including the web management tool at https://manage.iis.net.
+
+# Whats New
+
+With the introduction of this new API, IIS is more open than ever. Now IIS can be configured by anything that speaks HTTP. Previously users had to be on Windows machines to do any configuration or monitoring of IIS, but with this API even mobile devices are treated equally. Having an HTTP endpoint for IIS allows web based GUIs to take advantage. This is exactly what we're doing with the web based manager at https://manage.iis.net.
