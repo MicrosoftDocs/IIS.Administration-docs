@@ -16,6 +16,6 @@ This route is used for generating access tokens.
 
 ### /api
 
-On top of the default authorization requirements, the /api route requires an access-token with every request. Some users may wish to [lift the windows based authorization requirements](remove-integrated.md) from the api route and rely solely on the access token for security. This is a viable option for those wishing to use the API to administor their servers.
+On top of the default authorization requirements, the /api route requires an access-token with every request. Some users may wish to modify the windows based authorization requirements of the api route to add or remove roles. This is a viable option for those wishing to use the API to administor their servers.
 
 The /api route allows anonymous access for HTTP _OPTIONS_ requests. This is necessary for CORS requests from allowed origins to be successful. Without this rule, browser based GUIs would not be capable of using the API.
