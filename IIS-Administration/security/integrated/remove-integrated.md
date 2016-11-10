@@ -2,12 +2,12 @@
 uid: security/integrated/remove-integrated
 ---
 
-# Removing IIS Integrated Auth
+# Removing Integraded Windows Authentication
 
 As specified in the [windows authentication](windows.md) and [authorization](authorization.md) sections, the Microsoft IIS Administration API is secured with windows authentication and RBAC (role-based access control). Some use cases may warrant removing these requirements and using only access tokens for security. To do this, the [web.config](web.config.md) file must be modified to disable the [windows authentication](windows.md) and [authorization](authorization.md) requirements.
 
 **Note:**
-The [web.config](web.config.md) file contains settings for the /security route marked with the `<location path="security">` tag. These settings should not be modified because they secure the generation of access tokens.
+The [web.config](web.config.md) file contains settings for the /security route marked with the `<location path="security">` tag. These settings **should not be modified** because they secure the generation of access tokens.
 
 The web.config file comes with the following settings
 

@@ -10,11 +10,11 @@ The API Explorer enables resources to be retrieved, updated, created and deleted
 
 | METHOD |	DESCRIPTION                                    |
 |--------|-------------------------------------------------|
-| Get	 | Retrieves the specified resource                |
-| Post   | Creates a resource                              |
-| Patch  | Updates the specified resource                  |
-| Delete | Deletes the specified resource                  |
-| Head   | Similar to get except only returns HTTP headers |
+| GET	 | Retrieves the specified resource                |
+| POST   | Creates a resource                              |
+| PATCH  | Updates the specified resource                  |
+| DELETE | Deletes the specified resource                  |
+| HEAD   | Similar to get except only returns HTTP headers |
 
 ## Creating a Resource
 By selecting the Post option on the navigation panel, resources can be created. When the post option is selected a text area appears on the screen where the JSON representation of a resource can be written. The JSON in this text area is used to create the resource when the Go arrow is clicked.
