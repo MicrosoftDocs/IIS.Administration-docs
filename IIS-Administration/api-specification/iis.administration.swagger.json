@@ -1,0 +1,1331 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "IIS Administration",
+        "description": "Administer IIS",
+        "version": "1.0.1"
+    },
+    "host": "swagger.io",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/",
+    "produces": [
+        "application/hal+json"
+    ],
+    "securityDefinitions": {
+        "apiToken": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "Access-Token"
+        }
+    },
+    "security": [
+        {
+            "apiToken": []
+        }
+    ],
+    "paths": {
+        "/api/webserver": {
+            "get": {
+                "operationId": "getWebServer",
+                "security": [
+                    {
+                        "apiToken": []
+                    }
+                ],
+                "summary": "Web Server",
+                "description": "The web server endpoint returns information about the webserver that is installed on the machine. It also is an extensibility point for web server configuration and monitoring.\n",
+                "tags": [
+                    "Web Server"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The webserver resource",
+                        "schema": {
+                            "$ref": "#/definitions/WebServer"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/application-pools": {
+            "get": {
+                "operationId": "getAppPools",
+                "summary": "Lists the application pools on the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for app pool object.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of application pools.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "app_pools": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ApplicationPoolRef"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createAppPool",
+                "summary": "Create an application pool",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "pool",
+                        "schema": {
+                            "$ref": "#/definitions/ApplicationPool"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/application-pools/{id}": {
+            "get": {
+                "operationId": "getAppPoolById",
+                "summary": "View the settings for a specific application pool.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application pool",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The application pool with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/ApplicationPool"
+                        }
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "updateAppPool",
+                "summary": "Update the application pool with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application pool",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "pool",
+                        "schema": {
+                            "$ref": "#/definitions/ApplicationPool"
+                        }
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteAppPool",
+                "summary": "Delete the application pool with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application pool",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/websites": {
+            "get": {
+                "operationId": "getWebSites",
+                "summary": "Lists the web sites on the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the websites.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebSite"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of web sites.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "app_pools": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/WebSite"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createWebSite",
+                "summary": "Create a web site",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "site",
+                        "schema": {
+                            "$ref": "#/definitions/WebSite"
+                        }
+                    }
+                ],
+                "tags": [
+                    "WebSite"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/websites/{id}": {
+            "get": {
+                "operationId": "getWebSiteById",
+                "summary": "View the settings for a specific web site.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the web site",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebSite"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The web site with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/WebSite"
+                        }
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "updateWebSite",
+                "summary": "Update the web site with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the web site",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "site",
+                        "schema": {
+                            "$ref": "#/definitions/WebSite"
+                        }
+                    }
+                ],
+                "tags": [
+                    "WebSite"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteWebSite",
+                "summary": "Delete the web site with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the web site",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/files": {
+            "get": {
+                "operationId": "getFiles",
+                "summary": "Returns a list of files and directories. Without specifying a folder via the 'parent.id' parameter, this path will list the allowed root paths.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the files.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "parent.id",
+                        "in": "query",
+                        "description": "Populate the files list with children of the specified directory.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of files.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "app_pools": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/WebSite"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/default-documents": {
+            "get": {
+                "operationId": "getDefaultDocument",
+                "summary": "View the default document settings for the specified level in the configuration.",
+                "description": "The scope of the configuration that the settings are shown for are controlled by the query parameter that is given. Scope can be used to specify a specific path in the configuration system. The server scope is the empty string ''. Any other valid scope starts with a site and then includes the virtual path. e.g. site1/myapp/myvdir. Specifying the website.id targets the settings for the site with the specified id. Specifying the webapp.id  parameter targets the settings for the application with the specified id.",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "scope",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "website.id",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "webapp.id",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocument"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/default-documents/{id}": {
+            "get": {
+                "operationId": "getDefaultDocumentById",
+                "summary": "View the default document settings identified by the id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the default document settings",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocument"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "updateDefaultDocument",
+                "summary": "Update the default document configuration feature for a certain level in the configuration",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the default document feature",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocument"
+                        }
+                    }
+                ],
+                "tags": [
+                    "DefaultDocument"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocument"
+                        }
+                    },
+                    "404": {
+                        "description": "Cannot find the resource"
+                    }
+                }
+            }
+        },
+        "/api/webserver/default-documents/files": {
+            "get": {
+                "operationId": "getDefaultDocumentFiles",
+                "summary": "Get the entries for the default document feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "default_document.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of default document entries.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "entries": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/DefaultDocumentEntryRef"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "createDefaultDocumentFile",
+                "summary": "Creates a default document entry at a given scope at the scope specified by the default_document property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "DefaultDocumentEntry",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocumentEntry"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The entry was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocumentEntry"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/default-documents/files/{id}": {
+            "get": {
+                "operationId": "getDefaultDocumentFileById",
+                "summary": "Get a specific entry for the default document feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/DefaultDocumentEntry"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "deleteDefaultDocumentFile",
+                "summary": "Removes an entry from the default document feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "HAL": {
+            "type": "object",
+            "required": [
+                "href"
+            ],
+            "properties": {
+                "href": {
+                    "type": "string"
+                }
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "is_local": {
+                    "type": "boolean"
+                },
+                "is_locked": {
+                    "type": "boolean"
+                },
+                "override_mode": {
+                    "type": "string",
+                    "enum": [
+                        "allow",
+                        "deny"
+                    ]
+                },
+                "override_mode_effective": {
+                    "type": "string",
+                    "enum": [
+                        "allow",
+                        "deny"
+                    ]
+                }
+            }
+        },
+        "_links": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/HAL"
+            }
+        },
+        "WebServer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the webserver resource."
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "ApplicationPoolRef": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the application pool."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier for the application pool."
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "started",
+                        "stopped"
+                    ]
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "ApplicationPool": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the application pool."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier for the application pool."
+                },
+                "status": {
+                    "description": "The run-time state of the current application pool.",
+                    "type": "string",
+                    "enum": [
+                        "started",
+                        "stopped"
+                    ]
+                },
+                "auto_start": {
+                    "description": "A value indicating whether the current application pool starts automatically when created or when IIS starts.",
+                    "type": "boolean"
+                },
+                "pipline_mode": {
+                    "description": "This property specifies whether the request-processing pipeline mode is Integrated or Classic. In Classic mode, managed application events are executed by using ISAPI. In Integrated mode, ASP.NET request processing integrates directly into the IIS request-processing pipeline. Integrated mode enables you to configure managed modules for Web sites that are developed with unmanaged code. For example, you can use managed Forms authentication for a Web site that is developed with ASP.",
+                    "type": "string",
+                    "enum": [
+                        "integrated",
+                        "classic"
+                    ]
+                },
+                "managed_runtime_version": {
+                    "description": "The version of the .NET Framework that is used for managed applications in the current application pool.",
+                    "type": "string",
+                    "enum": [
+                        "v4.0",
+                        "v2.0"
+                    ]
+                },
+                "queue_length": {
+                    "type": "number",
+                    "description": "The maximum number of requests to queue before rejecting additional requests.",
+                    "minimum": 10,
+                    "maximum": 65535
+                },
+                "cpu": {
+                    "description": "CPU usage parameters for the current application pool.",
+                    "type": "object",
+                    "properties": {
+                        "limit": {
+                            "description": "The maximum percentage of CPU time, in hundredths of one percent, that the worker processes in an application pool are allowed to consume over a period of time. The default is 0, which disables CPU limiting.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100000
+                        },
+                        "limit_interval": {
+                            "description": "A time in minutes that specifies the reset period for CPU monitoring and throttling limits on an application pool. The default is 0, which disables CPU monitoring.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1440
+                        },
+                        "action": {
+                            "description": "The actions that IIS takes when an application pool exceeds the CPU limit specified by the Limit property.",
+                            "type": "string",
+                            "enum": [
+                                "NoAction",
+                                "KillW3wp",
+                                "Throttle",
+                                "ThrottleUnderLoad"
+                            ]
+                        },
+                        "processor_affinity_enabled": {
+                            "description": "This property specifies whether a particular worker process assigned to an application pool should also be assigned to a given CPU. This property is used in combination with the processor_affinity_mask property.",
+                            "type": "boolean"
+                        },
+                        "processor_affinity_mask32": {
+                            "description": "A value that indicates the CPU affinity for the application pool. The default is 0xFFFFFFFF.",
+                            "type": "string"
+                        },
+                        "processor_affinity_mask64": {
+                            "description": "A value that indicates the CPU affinity for the application pool. The default is 0xFFFFFFFF.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "process_model": {
+                    "type": "object",
+                    "properties": {
+                        "idle_timeout": {
+                            "description": "The period of time in minutes that a worker process should run if no new requests are received and the worker process is not processing requests. After the allotted time passes, the worker process will be shut down.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 43200
+                        },
+                        "idle_timeout_action": {
+                            "description": "The action to perform if a worker process is shut down from an idle timeout.",
+                            "type": "string",
+                            "enum": [
+                                "Terminate",
+                                "Suspend"
+                            ]
+                        },
+                        "max_processes": {
+                            "description": "The number of processes associated with the current application pool. The default is 1.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 2147483647
+                        },
+                        "pinging_enabled": {
+                            "description": "The pinging behavior for the worker process health monitoring. true if the process model supports health-monitor pinging; otherwise, false. The default is true.",
+                            "type": "boolean"
+                        },
+                        "ping_interval": {
+                            "description": "A value in seconds that specifies the interval between health-monitoring pings that the WWW service sends to a worker process. The default is 30 seconds.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 4294967
+                        },
+                        "ping_response_time": {
+                            "description": "A value in seconds that specifies the period of time that a worker process is given to respond to a health-monitoring ping. The default is 90 seconds.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 4294967
+                        },
+                        "shutdown_time_limit": {
+                            "description": "A value in seconds that specifies the period of time that IIS waits for requests to finish running in a worker process before IIS terminates the worker process. The default is 90 seconds.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 4294967
+                        },
+                        "startup_time_limit": {
+                            "description": "A value in seconds that specifies the period of time that IIS waits for an application pool to start. The default is 90 seconds.",
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 4294967
+                        }
+                    }
+                },
+                "identity": {
+                    "type": "object",
+                    "properties": {
+                        "identity_type": {
+                            "description": "The values of this enumeration enable you to configure your application pools to run under the security context of an existing security account or a custom account. If you configure the process model to use the SpecificUser value, you must also configure the username and password properties of the identity property.",
+                            "type": "string",
+                            "enum": [
+                                "LocalSystem",
+                                "LocalService",
+                                "NetworkService",
+                                "SpecificUser",
+                                "ApplicationPoolIdentity"
+                            ]
+                        },
+                        "username": {
+                            "description": "The user name associated with the security identity under which the application pool runs.",
+                            "type": "string"
+                        },
+                        "load_user_profile": {
+                            "description": "true if the user profile will be loaded when the application pool starts; otherwise, false. The default is false.",
+                            "type": "boolean"
+                        },
+                        "password": {
+                            "description": "A write-only property specifying the password to use with the given username if identity_type is set to SpecificUser.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "recycling": {
+                    "type": "object",
+                    "properties": {
+                        "disable_overlapped_recycle": {
+                            "description": "This property specifies whether the World Wide Web Publishing Service (WWW service) should start another worker process to replace the existing worker process while it is shutting down. You should set the value of this property to true if the worker process loads application code that does not support multiple instances of worker processes. true if overlapping rotation is not allowed; otherwise, false. The default is false.",
+                            "type": "boolean"
+                        },
+                        "disable_recycle_on_config_change": {
+                            "description": "This property specifies whether the World Wide Web Publishing Service (WWW service) should rotate worker processes in an application pool when the configuration changes. true if config change recycling is not allowed; otherwise, false. The default is false.",
+                            "type": "boolean"
+                        },
+                        "log_events": {
+                            "description": "This property specifies that IIS should log an event when an application pool is recycled for one or more of the reasons defined.",
+                            "type": "object",
+                            "properties": {
+                                "time": {
+                                    "type": "boolean"
+                                },
+                                "requeuessts": {
+                                    "type": "boolean"
+                                },
+                                "schedule": {
+                                    "type": "boolean"
+                                },
+                                "memory": {
+                                    "type": "boolean"
+                                },
+                                "isapi_unhealthy": {
+                                    "type": "boolean"
+                                },
+                                "on_demand": {
+                                    "type": "boolean"
+                                },
+                                "config_change": {
+                                    "type": "boolean"
+                                },
+                                "private_memory": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "periodic_restart": {
+                            "description": "An object that can be used to conditionally restart application pools. Application pools can be conditionally restarted based on limits of virtual memory, private memory, the number of requests, or time periods. Application pools can also be periodically restarted at any number of scheduled times. The object returned by this property provides access to configure all conditional and periodic application pool restarts.",
+                            "type": "object",
+                            "properties": {
+                                "time_interval": {
+                                    "description": "A value in minutes that specifies the period of time that should elapse before a worker process is recycled. The default is 1740.",
+                                    "type": "number"
+                                },
+                                "private_memory": {
+                                    "description": "The amount of private memory, in kilobytes, that a worker process can use before the worker process is recycled. The default is 0.",
+                                    "type": "number"
+                                },
+                                "request_limit": {
+                                    "description": "The number of requests that a worker process should process before it is recycled.",
+                                    "type": "number"
+                                },
+                                "virtual_memory": {
+                                    "description": "The amount of virtual memory, in kilobytes, that a worker process can use before the worker process is recycled. The default is 0.",
+                                    "type": "number"
+                                },
+                                "schedule": {
+                                    "description": "A list of specific times local times, in 24 hour format, when the application pool is recycled. e.g. 08:00, 15:00, 21:30.",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "rapid_fail_protection": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "true indicates that the applications in an application pool are put out of service when the number of worker process crashes reaches the maximum specified by the max_crashes property within the time specified by the interval property. The default is true. When an application pool detects that too many of its worker processes have become unhealthy in a specified period of time, rapid-fail protection is initiated. The communication channel for IIS is dropped. IIS detects the loss of communication, sends an error or warning to the event log, and then restarts the worker process. The application pool is taken out of service, and the kernel-mode driver returns an out-of-service message (503 Service Unavailable) to requests to that application pool.",
+                            "type": "boolean"
+                        },
+                        "load_balancer_capabilities": {
+                            "description": "This property specifies behavior when a worker process cannot be started (for example, when the request queue is full or an application pool is in rapid-fail protection). A value of TcpLevel terminates the connection. The default value of HttpLevel sends error code 503 (Service Unavailable).",
+                            "type": "string",
+                            "enum": [
+                                "HttpLevel",
+                                "TcpLevel"
+                            ]
+                        },
+                        "interval": {
+                            "description": "A value in minutes that indicates the interval of time before the failure count for a process is reset. The default is 5 minutes.",
+                            "type": "number"
+                        },
+                        "max_crashes": {
+                            "description": "The maximum number of application pool failures allowed. The default is 5.",
+                            "type": "number"
+                        },
+                        "auto_shutdown_exe": {
+                            "description": "This property specifies an executable to run when the World Wide Web Publishing Service (WWW service) shuts down an application pool. Use the auto_shutdown_params property to set parameters for the executable.",
+                            "type": "string"
+                        },
+                        "auto_shutdown_params": {
+                            "description": "The command-line parameters for the executable specified by the auto_shutdown_exe property.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "process_orphaning": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "description": "This property specifies whether to assign a worker process to an orphan state instead of terminating it when an application pool fails.",
+                            "type": "boolean"
+                        },
+                        "orphan_action_exe": {
+                            "description": "This property specifies an executable to run when the World Wide Web Publishing Service (WWW service) orphans a worker process.",
+                            "type": "string"
+                        },
+                        "orphan_action_params": {
+                            "description": "Command-line parameters for the executable specified by the orphan_action_exe property.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "WebSite": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "physical_path": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "number"
+                },
+                "server_auto_start": {
+                    "type": "boolean"
+                },
+                "enabled_protocols": {
+                    "type": "string"
+                },
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "connection_timeout": {
+                            "type": "integer"
+                        },
+                        "max_bandwidth": {
+                            "type": "integer"
+                        },
+                        "max_connections": {
+                            "type": "integer"
+                        },
+                        "max_url_segments": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "bindings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/WebSiteBinding"
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "started",
+                        "stopped",
+                        "unknown"
+                    ]
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "WebSiteBinding": {
+            "type": "object",
+            "properties": {
+                "protocol": {
+                    "type": "string"
+                },
+                "binding_information": {
+                    "type": "string"
+                },
+                "ip_address": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "number"
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "certificate": {
+                    "$ref": "#/definitions/Certificate"
+                }
+            }
+        },
+        "Certificate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "issued_by": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                },
+                "thumbprint": {
+                    "type": "string"
+                },
+                "valid_to": {
+                    "type": "string"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "File": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "file",
+                        "directory"
+                    ]
+                },
+                "physical_path": {
+                    "type": "string"
+                },
+                "exists": {
+                    "type": "boolean"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "last_modified": {
+                    "type": "string"
+                },
+                "last_access": {
+                    "type": "string"
+                },
+                "e_tag": {
+                    "type": "string"
+                },
+                "total_files": {
+                    "type": "integer"
+                },
+                "parent": {
+                    "$ref": "#/definitions/File"
+                },
+                "claims": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "WebFile": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "file",
+                        "directory",
+                        "vdir",
+                        "application"
+                    ]
+                },
+                "path": {
+                    "type": "string"
+                },
+                "parent": {
+                    "ref": "#/definitions/WebFile"
+                },
+                "website": {
+                    "ref": "#/definitions/WebSite"
+                },
+                "file_info": {
+                    "ref": "#/definitions/File"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "DefaultDocumentRef": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "DefaultDocument": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "This property specifies whether the default document feature is enabled at the specified scope.",
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the default document feature."
+                },
+                "scope": {
+                    "description": "The location in the configuration system that this resource reflects.",
+                    "type": "string"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "DefaultDocumentEntryRef": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "DefaultDocumentEntry": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "default_document": {
+                    "$ref": "#/definitions/DefaultDocumentRef"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "config_path": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -4,7 +4,7 @@ uid: security/integrated/windows
 
 # Windows Authentication
 
-Out of the box, the Microsoft IIS Administration API utilizes IIS's windows authentication module to authenticate users. These settings are specified in the [web.config](web.config.md) file. The windows authentication module enables the API to be restricted to users in the _Administrators_ and _IIS Administrators_ groups. By manipulating the [web.config](web.config.md) file you can [remove the requirements](remove-integrated.md) for windows auth. When windows auth is removed, the API can be accessed by anonymous users and access tokens can be used as the sole mechanism for security.
+Out of the box, the Microsoft IIS Administration API utilizes IIS's windows authentication module to authenticate users. These settings are specified in the [web.config](web.config.md) file. The windows authentication module enables the API to be restricted to users in the _Administrators_ and _IIS Administrators_ groups. By manipulating the [web.config](web.config.md) file you can alter the requirements for windows authentication. If windows authentication is removed access tokens become the sole mechanism for security.
 
 ## Browser Access
 

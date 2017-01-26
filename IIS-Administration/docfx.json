@@ -4,7 +4,8 @@
       {
         "files": [
           "**/*.md",
-          "**/*.png"
+          "**/*.png",
+          "**/*swagger.json"
         ],
         "exclude": [
           "**/obj/**",
@@ -16,8 +17,6 @@
     "resource": [
       {
         "files": [
-          "**/*.png",
-          "**/*.jpg"
         ],
         "exclude": [
           "**/obj/**",

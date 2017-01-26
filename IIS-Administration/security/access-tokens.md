@@ -21,7 +21,7 @@ Alternatively, the API offers a method to generate API keys using the /security/
 
 ## Securing Tokens
 
-By default only members of the 'Administrators' and 'IIS Administrators' can generate access tokens. This requirement is set through the integrated security that the IIS Administration API utilizes. [Integrated Security](integrated/toc.md) provides more information on the integrated security used by the API. 
+By default only members of the 'Administrators' and 'IIS Administrators' can generate access tokens. This requirement is set through the integrated security that the IIS Administration API utilizes. [Windows Authentication](integrated/windows.md) provides more information on the integrated security used by the API. 
 
 
 
