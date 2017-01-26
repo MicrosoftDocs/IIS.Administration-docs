@@ -28,7 +28,7 @@
     "paths": {
         "/api/webserver": {
             "get": {
-                "operationId": "getWebServer",
+                "operationId": "GetWebServer",
                 "security": [
                     {
                         "apiToken": []
@@ -57,7 +57,7 @@
         },
         "/api/webserver/application-pools": {
             "get": {
-                "operationId": "getAppPools",
+                "operationId": "GetAppPools",
                 "summary": "Lists the application pools on the web server.",
                 "parameters": [
                     {
@@ -95,7 +95,7 @@
                 }
             },
             "post": {
-                "operationId": "createAppPool",
+                "operationId": "CreateAppPool",
                 "summary": "Create an application pool",
                 "parameters": [
                     {
@@ -131,7 +131,7 @@
         },
         "/api/webserver/application-pools/{id}": {
             "get": {
-                "operationId": "getAppPoolById",
+                "operationId": "GetAppPoolById",
                 "summary": "View the settings for a specific application pool.",
                 "parameters": [
                     {
@@ -164,7 +164,7 @@
                 }
             },
             "patch": {
-                "operationId": "updateAppPool",
+                "operationId": "UpdateAppPool",
                 "summary": "Update the application pool with the specified id.",
                 "parameters": [
                     {
@@ -208,7 +208,7 @@
                 }
             },
             "delete": {
-                "operationId": "deleteAppPool",
+                "operationId": "DeleteAppPool",
                 "summary": "Delete the application pool with the specified id.",
                 "parameters": [
                     {
@@ -272,7 +272,7 @@
                 }
             },
             "post": {
-                "operationId": "createWebSite",
+                "operationId": "CreateWebSite",
                 "summary": "Create a web site",
                 "parameters": [
                     {
@@ -308,7 +308,7 @@
         },
         "/api/webserver/websites/{id}": {
             "get": {
-                "operationId": "getWebSiteById",
+                "operationId": "GetWebSiteById",
                 "summary": "View the settings for a specific web site.",
                 "parameters": [
                     {
@@ -341,7 +341,7 @@
                 }
             },
             "patch": {
-                "operationId": "updateWebSite",
+                "operationId": "UpdateWebSite",
                 "summary": "Update the web site with the specified id.",
                 "parameters": [
                     {
@@ -385,7 +385,7 @@
                 }
             },
             "delete": {
-                "operationId": "deleteWebSite",
+                "operationId": "DeleteWebSite",
                 "summary": "Delete the web site with the specified id.",
                 "parameters": [
                     {
@@ -411,7 +411,7 @@
         },
         "/api/files": {
             "get": {
-                "operationId": "getFiles",
+                "operationId": "GetFiles",
                 "summary": "Returns a list of files and directories. Without specifying a folder via the 'parent.id' parameter, this path will list the allowed root paths.",
                 "parameters": [
                     {
@@ -458,7 +458,7 @@
         },
         "/api/webserver/default-documents": {
             "get": {
-                "operationId": "getDefaultDocument",
+                "operationId": "GetDefaultDocument",
                 "summary": "View the default document settings for the specified level in the configuration.",
                 "description": "The scope of the configuration that the settings are shown for are controlled by the query parameter that is given. Scope can be used to specify a specific path in the configuration system. The server scope is the empty string ''. Any other valid scope starts with a site and then includes the virtual path. e.g. site1/myapp/myvdir. Specifying the website.id targets the settings for the site with the specified id. Specifying the webapp.id  parameter targets the settings for the application with the specified id.",
                 "parameters": [
@@ -502,7 +502,7 @@
         },
         "/api/webserver/default-documents/{id}": {
             "get": {
-                "operationId": "getDefaultDocumentById",
+                "operationId": "GetDefaultDocumentById",
                 "summary": "View the default document settings identified by the id.",
                 "parameters": [
                     {
@@ -526,7 +526,7 @@
                 }
             },
             "patch": {
-                "operationId": "updateDefaultDocument",
+                "operationId": "UpdateDefaultDocument",
                 "summary": "Update the default document configuration feature for a certain level in the configuration",
                 "parameters": [
                     {
@@ -563,7 +563,7 @@
         },
         "/api/webserver/default-documents/files": {
             "get": {
-                "operationId": "getDefaultDocumentFiles",
+                "operationId": "GetDefaultDocumentFiles",
                 "summary": "Get the entries for the default document feature at a certain level in the configuration",
                 "parameters": [
                     {
@@ -594,7 +594,7 @@
                 }
             },
             "post": {
-                "operationId": "createDefaultDocumentFile",
+                "operationId": "CreateDefaultDocumentFile",
                 "summary": "Creates a default document entry at a given scope at the scope specified by the default_document property",
                 "parameters": [
                     {
@@ -618,7 +618,7 @@
         },
         "/api/webserver/default-documents/files/{id}": {
             "get": {
-                "operationId": "getDefaultDocumentFileById",
+                "operationId": "GetDefaultDocumentFileById",
                 "summary": "Get a specific entry for the default document feature at a certain level in the configuration",
                 "parameters": [
                     {
@@ -641,7 +641,7 @@
                 }
             },
             "delete": {
-                "operationId": "deleteDefaultDocumentFile",
+                "operationId": "DeleteDefaultDocumentFile",
                 "summary": "Removes an entry from the default document feature at a given scope in the configuration feature.",
                 "parameters": [
                     {
