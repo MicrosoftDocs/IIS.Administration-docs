@@ -234,7 +234,7 @@
         },
         "/api/webserver/websites": {
             "get": {
-                "operationId": "getWebSites",
+                "operationId": "GetWebSites",
                 "summary": "Lists the web sites on the web server.",
                 "parameters": [
                     {
