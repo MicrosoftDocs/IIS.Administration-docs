@@ -254,7 +254,7 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "app_pools": {
+                                "websites": {
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/definitions/WebSite"
@@ -409,6 +409,53 @@
                 }
             }
         },
+        "/api/webserver/worker-processes": {            
+            "get": {
+                "operationId": "GetWorkerProcesses",
+                "summary": "Returns a list of all worker processes on the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the files.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "application_pool.id",
+                        "in": "query",
+                        "description": "Filter worker processes by application pool.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WorkerProcesses"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of worker processes.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "worker_processes": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/WorkerProcess"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/api/files": {
             "get": {
                 "operationId": "GetFiles",
@@ -438,10 +485,10 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "app_pools": {
+                                "files": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/WebSite"
+                                        "$ref": "#/definitions/File"
                                     }
                                 }
                             }
@@ -449,6 +496,310 @@
                     },
                     "default": {
                         "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateFile",
+                "summary": "Create a file",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "file",
+                        "schema": {
+                            "$ref": "#/definitions/File"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/files/{id}": {
+            "get": {
+                "operationId": "GetFileById",
+                "summary": "View the properties of a file.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The file with the given id",
+                        "schema": {
+                            "$ref": "#/definitions/File"
+                        }
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateFile",
+                "summary": "Update the file with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the file",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "file",
+                        "schema": {
+                            "$ref": "#/definitions/File"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteFile",
+                "summary": "Delete the file with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/files": {
+            "get": {
+                "operationId": "GetWebServerFiles",
+                "summary": "Returns a list of files, directories, and virtual directories. These resources belong to a given website and their path is determined relative to the root of the web site.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the web files.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "parent.id",
+                        "in": "query",
+                        "description": "Populate the files list with children of the specified directory.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website.id",
+                        "in": "query",
+                        "description": "This optional value allows for retrieving files relative to the root of a website",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "path",
+                        "in": "query",
+                        "description": "Combines with website.id to return the resource with the given relative path in relation to the root of the website.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebFiles"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of web files.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "files": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/WebFile"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/files/{id}": {
+            "get": {
+                "operationId": "GetWebFileById",
+                "summary": "View the properties of a file.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebFiles"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The file with the given id",
+                        "schema": {
+                            "$ref": "#/definitions/WebFile"
+                        }
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateWebFile",
+                "summary": "Update the file with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the file",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "webfile",
+                        "schema": {
+                            "$ref": "#/definitions/WebFile"
+                        }
+                    }
+                ],
+                "tags": [
+                    "WebFiles"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "description": "Cannot find the resource."
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteWebFile",
+                "summary": "Delete the file with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "Unexpected error.",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -563,7 +914,7 @@
         },
         "/api/webserver/default-documents/files": {
             "get": {
-                "operationId": "GetDefaultDocumentFiles",
+                "operationId": "GetDefaultDocumentEntries",
                 "summary": "Get the entries for the default document feature at a certain level in the configuration",
                 "parameters": [
                     {
@@ -594,7 +945,7 @@
                 }
             },
             "post": {
-                "operationId": "CreateDefaultDocumentFile",
+                "operationId": "CreateDefaultDocumentEntry",
                 "summary": "Creates a default document entry at a given scope at the scope specified by the default_document property",
                 "parameters": [
                     {
@@ -618,7 +969,7 @@
         },
         "/api/webserver/default-documents/files/{id}": {
             "get": {
-                "operationId": "GetDefaultDocumentFileById",
+                "operationId": "GetDefaultDocumentEntryById",
                 "summary": "Get a specific entry for the default document feature at a certain level in the configuration",
                 "parameters": [
                     {
@@ -641,7 +992,7 @@
                 }
             },
             "delete": {
-                "operationId": "DeleteDefaultDocumentFile",
+                "operationId": "DeleteDefaultDocumentEntry",
                 "summary": "Removes an entry from the default document feature at a given scope in the configuration feature.",
                 "parameters": [
                     {
@@ -1092,6 +1443,9 @@
                         "unknown"
                     ]
                 },
+                "application_pool": {
+                    "$ref": "#/definitions/ApplicationPool"
+                },
                 "_links": {
                     "$ref": "#/definitions/_links"
                 }
@@ -1139,10 +1493,53 @@
                     "type": "string"
                 },
                 "valid_to": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "WorkerProcess": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "process_id": {
+                    "type": "integer"
+                },
+                "process_guid": {
+                    "type": "string"
+                },
+                "start_time": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "working_set": {
+                    "type": "integer"
+                },
+                "peak_working_set": {
+                    "type": "integer"
+                },
+                "private_memory_size": {
+                    "type": "integer"
+                },
+                "peak_virtual_memory_size": {
+                    "type": "integer"
+                },
+                "total_processor_time": {
+                    "type": "integer"
+                },
+                "application_pool": {
+                    "$ref": "#/definitions/ApplicationPool"
                 }
             }
         },
@@ -1172,13 +1569,16 @@
                     "type": "integer"
                 },
                 "created": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "last_modified": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "last_access": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date"
                 },
                 "e_tag": {
                     "type": "string"
@@ -1222,13 +1622,13 @@
                     "type": "string"
                 },
                 "parent": {
-                    "ref": "#/definitions/WebFile"
+                    "$ref": "#/definitions/WebFile"
                 },
                 "website": {
-                    "ref": "#/definitions/WebSite"
+                    "$ref": "#/definitions/WebSite"
                 },
                 "file_info": {
-                    "ref": "#/definitions/File"
+                    "$ref": "#/definitions/File"
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
@@ -1266,6 +1666,9 @@
                 },
                 "metadata": {
                     "$ref": "#/definitions/metadata"
+                },
+                "website": {
+                    "$ref": "#/definitions/WebSite"
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
