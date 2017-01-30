@@ -4,7 +4,7 @@ uid: security/access-tokens
 
 # Access Tokens
 
-Every request to the API requires an access token in order to succeed. If a request is made to the API without an access token, the API will respond with an HTTP 403 status code and will set the 'WWW-Authenticate' HTTP header to 'Bearer'. The API expects the access token to be in the 'Access-Token' header of every request. The value of the 'Access-Token' header should be 'Bearer ' followed by the access token being used to access the API.
+Every request to the API requires an access token. If a request is made to the API without an access token, the API will respond with an HTTP 403 status code and will set the 'WWW-Authenticate' HTTP header to 'Bearer'. The API expects the access token to be in the _Access-Token_ header of every request. The value of the _Access-Token_ header should be 'Bearer ' followed by the access token being used to access the API.
 
 ```
     GET /api

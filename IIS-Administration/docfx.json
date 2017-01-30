@@ -4,7 +4,6 @@
       {
         "files": [
           "**/*.md",
-          "**/*.png",
           "**/*swagger.json"
         ],
         "exclude": [
@@ -17,11 +16,14 @@
     "resource": [
       {
         "files": [
+          "**/*.png",
+          "**/*.jpg"
         ],
         "exclude": [
           "**/obj/**",
           "IIS-Administration/**",
-          "**/includes/**"
+          "**/includes/**",
+          "_site/**"
         ]
       }
     ],
@@ -30,6 +32,6 @@
     "globalMetadata": {},
     "fileMetadata": {},
     "template": [],
-    "dest": "IIS-Administration"
+    "dest": "_site"
   }
 }

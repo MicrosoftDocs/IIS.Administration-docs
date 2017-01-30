@@ -20,6 +20,6 @@ When the installation has completed successfully the connect screen will appear.
 
 
 
-[get]: /imgs/manage.iis.net-get.png "Welcome screen at https://manage.iis.net"
-[await]: /imgs/manage.iis.net-await.png "Waiting on installation to finish"
-[connect]: /imgs/manage.iis.net-connect.png "Finished installing Microsoft IIS Administration API"
+[get]: _static/manage.iis.net-get.png "Welcome screen at https://manage.iis.net"
+[await]: _static/manage.iis.net-await.png "Waiting on installation to finish"
+[connect]: _static/manage.iis.net-connect.png "Finished installing Microsoft IIS Administration API"
