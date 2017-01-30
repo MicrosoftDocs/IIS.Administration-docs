@@ -5,7 +5,7 @@
         "description": "Administer IIS",
         "version": "1.0.1"
     },
-    "host": "swagger.io",
+    "host": "localhost:55539",
     "schemes": [
         "https"
     ],
@@ -13,6 +13,29 @@
     "produces": [
         "application/hal+json"
     ],
+    "responses": {
+        "201": {
+            "description": "Success."
+        },
+        "204": {
+            "description": "Success. No Content."
+        },
+        "400": {
+            "description": "Argument error."
+        },
+        "404": {
+            "description": "Cannot find the resource."
+        },
+        "415": {
+            "description": "Invalid JSON request object."
+        },
+        "default": {
+            "description": "Error.",
+            "schema": {
+                "$ref": "#/definitions/Error"
+            }
+        }
+    },
     "securityDefinitions": {
         "apiToken": {
             "type": "apiKey",
@@ -47,10 +70,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -87,10 +107,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -112,19 +129,16 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "success"
+                        "$ref": "#/responses/201"
                     },
                     "400": {
-                        "description": "Argument error."
+                        "$ref": "#/responses/400"
                     },
                     "415": {
-                        "description": "Invalid JSON request object."
+                        "$ref": "#/responses/415"
                     },
                     "default": {
-                        "description": "error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -153,13 +167,10 @@
                         }
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -194,16 +205,13 @@
                         "description": "Argument error."
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "415": {
                         "description": "Invalid JSON request object."
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -224,10 +232,7 @@
                         "description": "success"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -264,10 +269,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -289,19 +291,16 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "success"
+                        "$ref": "#/responses/201"
                     },
                     "400": {
-                        "description": "Argument error."
+                        "$ref": "#/responses/400"
                     },
                     "415": {
-                        "description": "Invalid JSON request object."
+                        "$ref": "#/responses/415"
                     },
                     "default": {
-                        "description": "error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -330,13 +329,10 @@
                         }
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -354,7 +350,7 @@
                     {
                         "in": "body",
                         "required": true,
-                        "name": "site",
+                        "name": "website",
                         "schema": {
                             "$ref": "#/definitions/WebSite"
                         }
@@ -371,16 +367,13 @@
                         "description": "Argument error."
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "415": {
                         "description": "Invalid JSON request object."
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -401,10 +394,359 @@
                         "description": "success"
                     },
                     "default": {
-                        "description": "Unexpected error.",
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/webapps": {            
+            "get": {
+                "operationId": "GetApplications",
+                "summary": "Returns a list of applications.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the applications.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "application_pool.id",
+                        "in": "query",
+                        "description": "Retrieve applications for the application pool with the given id.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website.id",
+                        "in": "query",
+                        "description": "Retrieve applications for the web site with the given id.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Applications"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of applications.",
                         "schema": {
-                            "$ref": "#/definitions/Error"
+                            "type": "object",
+                            "properties": {
+                                "webapps": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Application"
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateApplication",
+                "summary": "Creates a application for the web site specified in the request body.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "webapp",
+                        "schema": {
+                            "$ref": "#/definitions/Application"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Applications"
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/201"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "415": {
+                        "$ref": "#/responses/415"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/webapps/{id}": {
+            "get": {
+                "operationId": "GetApplicationById",
+                "summary": "View the settings for a specific application.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the application",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Applications"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The application with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/Application"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateApplication",
+                "summary": "Update the application with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "webapp",
+                        "schema": {
+                            "$ref": "#/definitions/Application"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Applications"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteApplication",
+                "summary": "Delete the application with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/virtual-directories": {            
+            "get": {
+                "operationId": "GetVirtualDirectories",
+                "summary": "Returns a list of virtual directories.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select additional or specific fields for the applications.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "webapp.id",
+                        "in": "query",
+                        "description": "Retrieve virtual directories for the application with the given id.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "website.id",
+                        "in": "query",
+                        "description": "Retrieve virtual directories for the web site with the given id.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Virtual Directories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of virtual directories.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "virtual_directories": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/VirtualDirectory"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateVirtualDirectory",
+                "summary": "Creates a virtual directory for the web site or application specified in the request body.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "vdir",
+                        "schema": {
+                            "$ref": "#/definitions/VirtualDirectory"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Virtual Directories"
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/201"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "415": {
+                        "$ref": "#/responses/415"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/virtual-directories/{id}": {
+            "get": {
+                "operationId": "GetVirtualDirectoryById",
+                "summary": "View the settings for a specific virtual directory.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the virtual directory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Virtual Directories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The virtual directory with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/VirtualDirectory"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateVirtualDirectory",
+                "summary": "Update the virtual directory with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the virtual directory",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "vdir",
+                        "schema": {
+                            "$ref": "#/definitions/VirtualDirectory"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Virtual Directories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "415": {
+                        "description": "Invalid JSON request object."
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteVirtualDirectory",
+                "summary": "Delete the virtual directory with the specified id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the virtual directory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -417,14 +759,14 @@
                     {
                         "name": "fields",
                         "in": "query",
-                        "description": "Select additional or specific fields for the files.",
+                        "description": "Select additional or specific fields for the worker processes.",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "application_pool.id",
                         "in": "query",
-                        "description": "Filter worker processes by application pool.",
+                        "description": "Retrieve worker processes for the application pool with the given id.",
                         "required": false,
                         "type": "string"
                     }
@@ -448,10 +790,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -459,7 +798,7 @@
         "/api/files": {
             "get": {
                 "operationId": "GetFiles",
-                "summary": "Returns a list of files and directories. Without specifying a folder via the 'parent.id' parameter, this path will list the allowed root paths.",
+                "summary": "Returns a list of files and directories. Without specifying a folder via the 'parent.id' parameter, this endpoint will list the allowed root paths.",
                 "parameters": [
                     {
                         "name": "fields",
@@ -495,10 +834,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -520,19 +856,16 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "success"
+                        "$ref": "#/responses/201"
                     },
                     "400": {
-                        "description": "Argument error."
+                        "$ref": "#/responses/400"
                     },
                     "415": {
-                        "description": "Invalid JSON request object."
+                        "$ref": "#/responses/415"
                     },
                     "default": {
-                        "description": "error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -561,13 +894,10 @@
                         }
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -602,16 +932,13 @@
                         "description": "Argument error."
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "415": {
                         "description": "Invalid JSON request object."
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -635,10 +962,269 @@
                         "description": "success"
                     },
                     "default": {
-                        "description": "Unexpected error.",
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/content/{id}": {
+            "head": {
+                "operationId": "GetFileContentHeaders",
+                "summary": "Retrieves the headers for a file content request. Performing a head operation before a get allows a client to see how long the file is and then request the file in multiple sections.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Headers for the content response"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "GetFileContent",
+                "summary": "Retrieves the content of a file. This endpoint supports range requests to select sections of the files content.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The content of the file with the given id",
                         "schema": {
-                            "$ref": "#/definitions/Error"
+                            "type": "string",
+                            "format": "binary"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "UpdateFileContent",
+                "summary": "Sets the content of a file. This endpoint supports range requests to update the file in parts.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "content",
+                        "schema": {
+                            "type": "string",
+                            "format": "binary"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Argument error."
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/downloads": {
+            "post": {
+                "operationId": "CreateDownload",
+                "summary": "Creates a download link for the file specified in the body. The download link is returned in the location header.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "download",
+                        "schema": {
+                            "$ref": "#/definitions/Download"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/201"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "415": {
+                        "$ref": "#/responses/415"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/copy": {
+            "post": {
+                "operationId": "CopyFile",
+                "summary": "Copy a file or folder into a new directory. A folder cannot be copied into itself.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "copyArgument",
+                        "schema": {
+                            "$ref": "#/definitions/CopyArgument"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success.",
+                        "schema": {
+                            "$ref": "#/definitions/CopyProgress"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "415": {
+                        "$ref": "#/responses/415"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/copy/{id}": {
+            "get": {
+                "operationId": "GetCopyProgress",
+                "summary": "Retrieves resource indicating the progress of the copy operation.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A resource indicating the progress of the copy operation.",
+                        "schema": {
+                            "$ref": "#/definitions/CopyProgress"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/move": {
+            "post": {
+                "operationId": "MoveFile",
+                "summary": "Move a file or folder to a new directory. A folder cannot be moved into itself.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "moveArgument",
+                        "schema": {
+                            "$ref": "#/definitions/MoveArgument"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success.",
+                        "schema": {
+                            "$ref": "#/definitions/MoveProgress"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "415": {
+                        "$ref": "#/responses/415"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/files/move/{id}": {
+            "get": {
+                "operationId": "GetMoveProgress",
+                "summary": "Retrieves resource indicating the progress of the move operation.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the file",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Files"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A resource indicating the progress of the move operation.",
+                        "schema": {
+                            "$ref": "#/definitions/MoveProgress"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -696,10 +1282,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -728,13 +1311,10 @@
                         }
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -769,16 +1349,13 @@
                         "description": "Argument error."
                     },
                     "404": {
-                        "description": "Cannot find the resource."
+                        "$ref": "#/responses/404"
                     },
                     "415": {
                         "description": "Invalid JSON request object."
                     },
                     "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             },
@@ -799,10 +1376,7 @@
                         "description": "success"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -843,10 +1417,7 @@
                         "description": "not found"
                     },
                     "default": {
-                        "description": "Unexpected error.",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
+                        "$ref": "#/responses/default"
                     }
                 }
             }
@@ -907,7 +1478,7 @@
                         }
                     },
                     "404": {
-                        "description": "Cannot find the resource"
+                        "$ref": "#/responses/404"
                     }
                 }
             }
@@ -1395,37 +1966,47 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A unique identifier for the web site."
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the web site."
                 },
                 "physical_path": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The location of the web site's root directory in the file system"
                 },
                 "key": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The unique ID of the web site as seen in IIS's applicationHost.config file. This key can be used to correlate sites between different IIS management systems."
                 },
                 "server_auto_start": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "A value indicating whether the web site should automatically start."
                 },
                 "enabled_protocols": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Communication protocols that are enabled for the web site."
                 },
                 "limits": {
                     "type": "object",
                     "properties": {
                         "connection_timeout": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "The period of time IIS waits before it considers a connection inactive."
                         },
                         "max_bandwidth": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Maximum network bandwidth in bytes per second."
                         },
                         "max_connections": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Maximum number of simultaneous connections allowed for a web site."
                         },
                         "max_url_segments": {
-                            "type": "integer"
+                            "type": "integer",
+                            "description": "Maximum number of URL segments allowed in any given request to the web site."
                         }
                     }
                 },
@@ -1437,6 +2018,7 @@
                 },
                 "status": {
                     "type": "string",
+                    "description": "Status indicating whether or not the site is capable of handling requests.",
                     "enum": [
                         "started",
                         "stopped",
@@ -1451,26 +2033,120 @@
                 }
             }
         },
+        "Application": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The full path of the application beginning with the web site name."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier for the application."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path of the application. This path is used to resolve the application in the URL relative to the root of the web site."
+                },
+                "physical_path": {
+                    "type": "string",
+                    "description": "The location of the application's root directory in the file system"
+                },
+                "enabled_protocols": {
+                    "type": "string",
+                    "description": "Communication protocols that are enabled for the application."
+                },
+                "website": {
+                    "$ref": "#/definitions/WebSite",
+                    "description": "The web site that the application belongs to."
+                },
+                "application_pool": {
+                    "$ref": "#/definitions/ApplicationPool",
+                    "description": "The application pool that the application belongs to."
+                }
+            }
+        },
+        "VirtualDirectory": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The full path of the virtual directory beginning with the web site name."
+                },
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier for the virtual directory."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The path of the virtual directory relative to the application that it belongs to."
+                },
+                "physical_path": {
+                    "type": "string",
+                    "description": "The location of the virtual directory in the file system"
+                },
+                "identity": {
+                    "type": "object",
+                    "properties": {
+                        "username": {
+                            "type": "string",
+                            "description": "The username for the identity used to access the virtual directory."
+                        },
+                        "password": {
+                            "type": "string",
+                            "description": "This property is write only. Sets the password for the identity used to access the virtual directory."
+                        },
+                        "logon_method": {
+                            "type": "string",
+                            "description": "Specifies the type of logon to use when accessing the virtual directory. Documentation for the different logon types can be found in the MSDN entry for the Windows LogonUser function.",
+                            "enum": [
+                                "interactive",
+                                "batch",
+                                "network",
+                                "network_cleartext"
+                            ]
+                        }
+                    }
+                },
+                "webapp": {
+                    "$ref": "#/definitions/Application",
+                    "description": "The application that the virtual directory belongs to."
+                },
+                "website": {
+                    "$ref": "#/definitions/WebSite",
+                    "description": "The web site that the virtual directory belongs to."
+                }
+            }
+        },
         "WebSiteBinding": {
             "type": "object",
             "properties": {
                 "protocol": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The protocol the binding will listen for."
                 },
                 "binding_information": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A serialized string that describes the binding in the following format '{IP address}:{port}:{hostname}'."
                 },
                 "ip_address": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The IP address the binding will listen for."
                 },
                 "port": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "The port the binding will listen on."
                 },
                 "hostname": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The hostname that will resolve to the binding."
                 },
                 "certificate": {
                     "$ref": "#/definitions/Certificate"
+                },
+                "require_sni": {
+                    "type": "boolean",
+                    "description": "Indicated whether the binding should require Server Name Identification from clients in order to take the request. This property is only available on HTTPS bindings that have an SSL certificate."
                 }
             }
         },
@@ -1632,6 +2308,110 @@
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "Download": {
+            "type": "object",
+            "properties": {
+                "file": {
+                    "$ref": "#/definitions/File"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "The total number of milliseconds the download will be available."
+                }
+            }
+        },
+        "CopyArgument": {
+            "type": "object",
+            "properties": {
+                "file": {
+                    "description": "The file to copy.",
+                    "$ref": "#/definitions/File"
+                },
+                "parent": {
+                    "description": "The folder to copy the file to.",
+                    "$ref": "#/definitions/File"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new name of the copy."
+                }
+            }
+        },
+        "CopyProgress": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The status time of the copy operation.",
+                    "type": "string"
+                },
+                "created": {
+                    "description": "The start time of the copy operation.",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "current_size": {
+                    "description": "Progress of the copy operation",
+                    "type": "integer"
+                },
+                "total_size": {
+                    "description": "Size of the source file",
+                    "type": "integer"
+                },
+                "file": {
+                    "description": "The file info for the destination file.",
+                    "$ref": "#/definitions/File"
+                }
+            }
+        },
+        "MoveArgument": {
+            "type": "object",
+            "properties": {
+                "file": {
+                    "description": "The file to move.",
+                    "$ref": "#/definitions/File"
+                },
+                "parent": {
+                    "description": "The folder to move the file to.",
+                    "$ref": "#/definitions/File"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The new name of the file."
+                }
+            }
+        },
+        "MoveProgress": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The status time of the move operation.",
+                    "type": "string"
+                },
+                "created": {
+                    "description": "The start time of the move operation.",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "current_size": {
+                    "description": "Progress of the move operation",
+                    "type": "integer"
+                },
+                "total_size": {
+                    "description": "Size of the source file",
+                    "type": "integer"
+                },
+                "file": {
+                    "description": "The file info for the destination file.",
+                    "$ref": "#/definitions/File"
                 }
             }
         },
