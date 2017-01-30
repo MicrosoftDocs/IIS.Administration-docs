@@ -36,7 +36,7 @@ Here we can see that after a successful patch request the resource reflects the 
 To delete a resource, first navigate to the target resource in the api explorer. Then select the delete method on the navigation panel and press the go button.
 
 
-[navigation]: /imgs/navigation.png "The navigation pane of the API Explorer"
-[create-site]: /imgs/create-site.png "Creating a site in the API Explorer"
-[stopping-site]: /imgs/stopping-site.png "Connecting to the API Explorer"
-[stopped-site]: /imgs/stopped-site.png "Browsing with the API Explorer"
+[navigation]: _static/navigation.png "The navigation pane of the API Explorer"
+[create-site]: _static/create-site.png "Creating a site in the API Explorer"
+[stopping-site]: _static/stopping-site.png "Connecting to the API Explorer"
+[stopped-site]: _static/stopped-site.png "Browsing with the API Explorer"

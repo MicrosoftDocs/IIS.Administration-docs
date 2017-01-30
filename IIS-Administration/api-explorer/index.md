@@ -19,5 +19,5 @@ Once you have connected to the explorer you can begin browsing. The API's resour
 ![Browsing with the API Explorer][explorer]
 
 
-[explorer-connect]: /imgs/explorer-connect.png "Connecting to the API Explorer"
-[explorer]: /imgs/explorer.png "Browsing with the API Explorer"
+[explorer-connect]: _static/explorer-connect.png "Connecting to the API Explorer"
+[explorer]: _static/explorer.png "Browsing with the API Explorer"

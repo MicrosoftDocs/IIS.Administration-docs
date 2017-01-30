@@ -26,4 +26,4 @@ By default only members of the 'Administrators' and 'IIS Administrators' can gen
 
 
 
-[generate]: /imgs/generate-access-token.png "Generating an access token"
+[generate]: _static/generate-access-token.png "Generating an access token"
