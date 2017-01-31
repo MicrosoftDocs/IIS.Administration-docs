@@ -17,17 +17,17 @@ The API Explorer enables resources to be retrieved, updated, created and deleted
 | HEAD   | Similar to get except only returns HTTP headers |
 
 ## Creating a Resource
-By selecting the Post option on the navigation panel, resources can be created. When the post option is selected a text area appears on the screen where the JSON representation of a resource can be written. The JSON in this text area is used to create the resource when the Go arrow is clicked.
+By selecting the post option on the navigation panel, resources can be created. When the post option is selected a text area appears on the screen where the JSON representation of a resource can be written. The JSON in this text area is used to create the resource when the go arrow is clicked.
 
 ![Creating a site in the API Explorer][create-site]
 
 ## Updating a Resource
 
-The modification of resources is done by issuing patch requests. To update a resource, select the patch option on the navigation pane which will open the text area for the request content. The content of the patch request should contain the desired state of the resource. For example, to stop a web site we send a patch request indicating that the status of the web site should be 'stopped'.
+The modification of resources is done by issuing patch requests. To update a resource, select the patch option on the navigation pane which will open the text area for the request content. The content of the patch request should contain the desired state of the resource. For example, to stop a web site we send a patch request indicating that the status of the web site should be _stopped_.
 
 ![Stopping a site in the API Explorer][stopping-site]
 
-Here we can see that after a successful patch request the resource reflects the state that we specified.
+Here we see that after a successful patch request the resource reflects the state that we specified.
 
 ![Successfully stopped site][stopped-site]
 

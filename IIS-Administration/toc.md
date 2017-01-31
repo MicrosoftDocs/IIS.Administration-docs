@@ -3,4 +3,4 @@
 # [Security](security/toc.md)
 # [Configuration](configuration/toc.md)
 # [API Explorer](api-explorer/toc.md)
-# [API-Specification](api-specification/toc.md)
+# [API](api/toc.md)
