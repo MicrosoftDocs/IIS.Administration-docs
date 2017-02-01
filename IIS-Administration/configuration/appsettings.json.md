@@ -9,7 +9,7 @@ The appsettings.json file specifies application specific settings that alter the
 The appsettings.json file is located at: 
 `IIS Administration\<version>\Microsoft.IIS.Administration\config\appsettings.json`
 
-## Example
+### Example
 
 ```
 {
@@ -93,7 +93,7 @@ Multiple endpoints require interacting with the file system, such as creating a 
 
 ### Default Settings
 
-By default the IIS Administration allows read access to %systemdrive%\inetpub. The default configuration takes effect if the _files_ setting is not present.
+The IIS Administration API will allow read access to %systemdrive%\inetpub there are no _files_ settings present.
 
 ### Format
 

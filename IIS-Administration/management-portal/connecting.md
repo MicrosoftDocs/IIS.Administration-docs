@@ -1,10 +1,10 @@
 ---
-uid: setup/management-portal
+uid: management-portal/connecting
 ---
 
-# Management Portal Based Setup
+## Using the Management Portal
 
-The easiest way to install the Microsoft IIS Administration API is by visiting the web based manager at https://manage.iis.net. It is recommended to first install the dependencies mentioned in [requirements](./requirements.md). When visiting this site for the first time, a prompt will appear allowing the API to be downloaded. Once the installer has been downloaded the management portal will wait for the installation to finish. 
+The easiest way to obtain the latest version of the API is by visiting the web based manager at [manage.iis.net](https://manage.iis.net). When visiting this site for the first time, a prompt will appear allowing the API to be downloaded. Once the installer has been downloaded the management portal will wait for the installation to finish. 
 
 ![Initial visit to https://manage.iis.net][get]
 
