@@ -25,7 +25,11 @@ By selecting the post option on the navigation panel, resources can be created. 
 
 The modification of resources is done by issuing patch requests. To update a resource, select the patch option on the navigation pane which will open the text area for the request content. The content of the patch request should contain the desired state of the resource. For example, to stop a web site we send a patch request indicating that the status of the web site should be _stopped_.
 
+### Before Patch Request
+
 ![Stopping a site in the API Explorer][stopping-site]
+
+### After Patch Request
 
 Here we see that after a successful patch request the resource reflects the state that we specified.
 

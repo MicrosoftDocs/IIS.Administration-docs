@@ -6,7 +6,7 @@ uid: api/applications
 
 Applications provide a method to differentiate sections of a web site. An application belongs to a single web site and will handle requests for the web site at the application path. The application pool API allows consumers to create, read, delete, or update their application pools.
 
-**GET** _/api/webserver/applications/{id}_
+**GET** _/api/webserver/webapps/{id}_
 ```
 {
     "location": "Default Web Site/demo-app",
@@ -75,7 +75,7 @@ Applications provide a method to differentiate sections of a web site. An applic
 
 The applications that belong to a web site can retrieved by providing the website id in the GET request. [Web site](sites.md) resources contain the link required to access their applications in their [HAL](hal.md).
 
-Listing the applications for a website. **GET** */api/webserver/applications?website.id={website_id}*
+Listing the applications for a website. **GET** */api/webserver/webapps?website.id={website_id}*
 ```
 {
     "webapps": [
@@ -110,7 +110,7 @@ Creating an application requires:
 * path: The virtual path that the application should exist at relative to the root of the web site.
 * physical_path: The directory that the application should exist in in the file system. The directory must exist.
 
-Creating an application. **POST** _/api/webserver/applications_
+Creating an application. **POST** _/api/webserver/webapps_
 ```
 {
     "path": "demo-app",
@@ -125,7 +125,7 @@ Creating an application. **POST** _/api/webserver/applications_
 
 To create an application in a specific application pool, add the **application_pool** property to the request body.
 
-Creating an application for a specific application pool. **POST** _/api/webserver/applications_
+Creating an application for a specific application pool. **POST** _/api/webserver/webapps_
 ```
 {
     "path": "demo-app",

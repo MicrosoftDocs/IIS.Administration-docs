@@ -3,7 +3,7 @@ uid: api-explorer/index
 ---
 
 # API Explorer
-The Microsoft IIS Administration API comes with a built in interface called the API Explorer. This explorer allows users to navigate the API using hyperlinks. API resources can be created, retrieved, modified, and removed directly from this tool. By default the API Explorer can be reached by browsing https://localhost:55539 on any machine that has the API installed. This interface is also where [access tokens](../security/access-tokens.md) are created.
+The Microsoft IIS Administration API comes with a built in interface called the API Explorer. This explorer allows users to navigate the API using hyperlinks. Resources can be created, retrieved, modified, and removed directly from this tool. By default the API Explorer can be reached by browsing https://localhost:55539 on any machine that has the API installed. This interface is also where [access tokens](../security/access-tokens.md) are created.
 
 
 ## Connecting
