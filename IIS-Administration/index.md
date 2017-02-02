@@ -27,4 +27,4 @@ Security is a top priority. Our service can use any form of authentication and a
  * Native mobile applications (Android, iOS, Windows)
  * Browser applications
 
-A great example of what the IIS Administration API enables is the web UI that we have developed at [manage.iis.net](https://www.manage.iis.net)
+A great example of what the IIS Administration API enables is the web UI that we have developed at [manage.iis.net](https://manage.iis.net)

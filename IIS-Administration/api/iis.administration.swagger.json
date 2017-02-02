@@ -100,7 +100,7 @@
                                 "app_pools": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/ApplicationPoolRef"
+                                        "$ref": "#/definitions/ApplicationPool"
                                     }
                                 }
                             }
@@ -1504,7 +1504,7 @@
                                 "entries": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/definitions/DefaultDocumentEntryRef"
+                                        "$ref": "#/definitions/DefaultDocumentEntry"
                                     }
                                 }
                             }
@@ -1640,29 +1640,6 @@
                 "id": {
                     "type": "string",
                     "description": "Unique identifier of the webserver resource."
-                },
-                "_links": {
-                    "$ref": "#/definitions/_links"
-                }
-            }
-        },
-        "ApplicationPoolRef": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "The name of the application pool."
-                },
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier for the application pool."
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "started",
-                        "stopped"
-                    ]
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
@@ -2415,20 +2392,6 @@
                 }
             }
         },
-        "DefaultDocumentRef": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "scope": {
-                    "type": "string"
-                },
-                "_links": {
-                    "$ref": "#/definitions/_links"
-                }
-            }
-        },
         "DefaultDocument": {
             "type": "object",
             "properties": {
@@ -2455,20 +2418,6 @@
                 }
             }
         },
-        "DefaultDocumentEntryRef": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "_links": {
-                    "$ref": "#/definitions/_links"
-                }
-            }
-        },
         "DefaultDocumentEntry": {
             "type": "object",
             "properties": {
@@ -2479,7 +2428,7 @@
                     "type": "string"
                 },
                 "default_document": {
-                    "$ref": "#/definitions/DefaultDocumentRef"
+                    "$ref": "#/definitions/DefaultDocument"
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"

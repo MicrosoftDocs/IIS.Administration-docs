@@ -2,11 +2,9 @@
 uid: api/sites
 ---
 
-# Web Sites API
+# The Web Site Resource
 
-The web site resource is the most important resource in IIS. The web site API allows consumers to create, read, delete, or update their web sites. This is perfect for scripting automated deployments or making on the fly additions such as adding HTTPS bindings.
-
-## The Web Site resource
+Web sites are a core entity of IIS that determine where and how requests will be handled. The web site API allows consumers to create, read, delete, or update their web sites. This is suitable for scripting automated deployments or making alterations to existing resources.
 
 **GET** _/api/webserver/websites/{id}_
 ```
@@ -120,7 +118,7 @@ The web site resource is the most important resource in IIS. The web site API al
 }
 ```
 
-## Web Site bindings
+## Web Site Bindings
 
 The bindings of a web site determine what ports, protocols, and hostnames the site will listen for. At the least, a binding must specify a protocol, ip adddress, and a port. The *binding_information* property can be used to specify the ip address, port, and hostname. The format of *binding_information* is '{ip_address}:{port}:{hostname}' for HTTP and HTTPS protocols. A certificate is required for HTTPS bindings.
 
@@ -167,7 +165,7 @@ Creating a web site that listens for HTTPS requests on port 8082.  **POST** _/ap
 }
 ```
 
-### Specifying the Application Pool
+### Creating in a specific Application Pool
 
 To specify which application pool that a web site should be created for, add the *application_pool* property to the body of the request. The application pool is identified solely by its *id* property.
 
@@ -197,7 +195,7 @@ Updating web sites is done through patch requests. Sending a patch request with 
 
 A common reason to update a web site is to add a binding. As an example, let us say that there is a web site with a single binding on port 80, and we want to add a binding that listens on port 8080. We should send a patch request that contains a _bindings_ list with both the bindings that we desire. Since the _bindings_ property is a list, the bindings that already exist on the web site should be sent as part of the request so that they are not lost.
 
-Patch request to add a binding to a web site. **PATCH** _/api/webserver/websites/{id}_
+Adding a binding to a web site. **PATCH** _/api/webserver/websites/{id}_
 ```
 {
     "bindings": [
