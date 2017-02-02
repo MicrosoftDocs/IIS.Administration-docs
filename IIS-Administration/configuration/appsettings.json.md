@@ -69,11 +69,11 @@ The appsettings.json file is located at:
 
 ### Format
 
-rules: A set of CORS rules to control how the API shares resources.
+__rules__: A set of CORS rules to control how the API shares resources.
 
-origin: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, **&ast;**, is provided as the origin, that rule will apply to all origins.
+__origin__: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, **&ast;**, is provided as the origin, that rule will apply to all origins.
 
-allow: Indicates whether resources should be shared to the specified origin.
+__allow__: Indicates whether resources should be shared to the specified origin.
 
 The following enables CORS for [manage.iis.net](https://manage.iis.net)
 ```
@@ -97,13 +97,15 @@ The IIS Administration API will allow read access to %systemdrive%\inetpub there
 
 ### Format
 
-locations: A set of file system locations and associated rights specifying what operations are allowed to be performed through the API.
+__locations__: A set of file system locations and associated rights specifying what operations are allowed to be performed through the API.
 
-alias: A name for the location.
+__alias__: A name for the location.
 
-path: A root path to assign the list of claims. All files or directories under this path inherit the list of claims unless overridden with a more specific path.
+__path__: A root path to assign the list of claims. All files or directories under this path inherit the list of claims unless overridden with a more specific path.
 
- claims: Specifies what operations are allowed to be performed on files directories under the path. An empty set of claims means access to that location is denied.
+__claims__: Specifies what operations are allowed to be performed on files directories under the path. An empty set of claims means no access will be allowed to that location.
+
+The following settings allow read/write access to _%systemdrive%\inetpub_ and read access to _%systemdrive%\shared_images_
 
 ```
   "files": {

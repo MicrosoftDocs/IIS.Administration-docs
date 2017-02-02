@@ -19,8 +19,11 @@ Security is a top priority. Our service can use any form of authentication and a
 ### So Many Options
 
  A REST API is accessible from anywhere. 
- * PowerShell scripts
- * Python scripts
+ * PowerShell
+ * .NET
+ * Java
+ * Python
+ * Javascript
  * Native mobile applications (Android, iOS, Windows)
  * Browser applications
 
