@@ -4,68 +4,18 @@ uid: configuration/appsettings.json
 
 # Application Settings (appsettings.json)
 
-The appsettings.json file specifies application specific settings that alter the behavior of the Microsoft IIS Administration API. Any changes to the appsettings.json file require restarting the "Microsoft IIS Administration" service to take effect.
+All of the application's settings are contained in a file named appsettings.json. Any changes to the appsettings.json file will require restarting the "Microsoft IIS Administration" service to take effect.
 
 The appsettings.json file is located at: 
 `IIS Administration\<version>\Microsoft.IIS.Administration\config\appsettings.json`
 
-### Example
-
-```
-{
-  "host_id": "",
-
-  "host_name": "My instance of the IIS Administration API",
-
-  "administrators": [
-    "Administrators",
-    "IIS Administrators"
-  ],
-
-  "logging": {
-    "enabled": true,
-    "file_name": "log-{Date}.txt",
-    "min_level": "Error",
-    "path": null
-  },
-
-  "auditing": {
-    "enabled": true,
-    "file_name": "audit-{Date}.txt",
-    "path": null
-  },
-
-  "cors": {
-    "rules": [
-      {
-        "origin": "https://manage.iis.net",
-        "allow": true
-      },
-      {
-        "origin": "https://My-Organizations-Custom-UI.com",
-        "allow": true
-      }
-    ]
-  },
-
-  "files": {
-    "locations": [
-      {
-        "alias": "inetpub",
-        "path": "%systemdrive%\\inetpub",
-        "claims": [
-          "read",
-          "write"
-        ]
-      }
-    ]
-  }
-}
-```
-
 ## CORS
 
 [CORS](https://www.w3.org/TR/cors/) policies allow browser based applications to send requests to the Microsoft IIS Administration API.  By default, [manage.iis.net](https://manage.iis.net) is the only origin that is allowed in the API's CORS policy.
+
+### Default Settings
+
+The IIS Administration API will not allow CORS for any origin if there are no _cors_ settings present.
 
 ### Format
 
@@ -129,3 +79,56 @@ The following settings allow read/write access to _%systemdrive%\inetpub_ and re
   }
 ```
 
+## Complete Example
+
+```
+{
+  "host_id": "",
+
+  "host_name": "My instance of the IIS Administration API",
+
+  "administrators": [
+    "Administrators",
+    "IIS Administrators"
+  ],
+
+  "logging": {
+    "enabled": true,
+    "file_name": "log-{Date}.txt",
+    "min_level": "Error",
+    "path": null
+  },
+
+  "auditing": {
+    "enabled": true,
+    "file_name": "audit-{Date}.txt",
+    "path": null
+  },
+
+  "cors": {
+    "rules": [
+      {
+        "origin": "https://manage.iis.net",
+        "allow": true
+      },
+      {
+        "origin": "https://My-Organizations-Custom-UI.com",
+        "allow": true
+      }
+    ]
+  },
+
+  "files": {
+    "locations": [
+      {
+        "alias": "inetpub",
+        "path": "%systemdrive%\\inetpub",
+        "claims": [
+          "read",
+          "write"
+        ]
+      }
+    ]
+  }
+}
+```
