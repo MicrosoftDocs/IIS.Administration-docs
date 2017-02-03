@@ -1669,7 +1669,7 @@
                     "description": "A value indicating whether the current application pool starts automatically when created or when IIS starts.",
                     "type": "boolean"
                 },
-                "pipline_mode": {
+                "pipeline_mode": {
                     "description": "This property specifies whether the request-processing pipeline mode is Integrated or Classic. In Classic mode, managed application events are executed by using ISAPI. In Integrated mode, ASP.NET request processing integrates directly into the IIS request-processing pipeline. Integrated mode enables you to configure managed modules for Web sites that are developed with unmanaged code. For example, you can use managed Forms authentication for a Web site that is developed with ASP.",
                     "type": "string",
                     "enum": [

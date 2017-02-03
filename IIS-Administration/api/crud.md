@@ -44,7 +44,7 @@ Creating a product for a grocery store. **POST**
 
 Resources are retrieved by performing HTTP GET requests. There are two main methods to retrieve resources. The first method involves requesting a list of resources, the second method is when a single resource is requested. Requests to a single resource are marked by the presence of the resource **id** in the URL of the request. Sometimes, singular resources can also be specified through query string paremeters in the URL. This behavior depends on the individual API endpoint.
 
-### Retrieving Multiple Resources
+### Retrieving multiple resources
 
 Reading lists of resources is done by requesting a resource endpoint without specifying an individual resources **id**. Sometimes resources require query string parameters or else they cannot produce valid lists. For example IIS applications live at the _/api/webserver/webapps_ endpoint, but requesting that endpoint alone would produce no information. This is because a web site must be specified to tell the API which applications should be shown. So consumers would request */api/webserver/webapps?website.id={website_id}* to see a list of applications.
 
@@ -86,7 +86,7 @@ Retrieving a list of resources. **GET** _/api/websites_
 }
 ```
 
-### Retrieving Individual Resources
+### Retrieving individual resources
 
 Resources are retrieved on an individual basis by providing the **id** of the resource in the URL of the resource endpoint. Some API endpoints also allow specifying individual resources by providing uniquely identifying query string parameters. For example, a file can be retrieved by providing the **id** of the file in the URL or by providing the **physical_path** of the file.
 
@@ -100,7 +100,7 @@ The files endpoint provides this behavior because only one file can exist for an
 
 Updates are performed by issuing HTTP PATCH requests to the URL that the resource is located at. When a PATCH request is performed, the properties of the request body are read, and if the resource has a property with the same name the property of the resource will be set to the new value.
 
-### Example Resource Before PATCH
+### Example resource before PATCH
 ```
 {
     "name": "Apple",
@@ -123,7 +123,7 @@ Patch request to update the name of the resource. **PATCH** _/api/products/12345
 }
 ```
 
-### Resource After PATCH
+### Resource after PATCH
 ```
 {
     "name": "Orange",
@@ -139,4 +139,4 @@ Patch request to update the name of the resource. **PATCH** _/api/products/12345
 
 ## Delete (DELETE)
 
-Resources are deleted by sending HTTP DELETE requests to the URL that the resource is located at. This is the URL that contains the **id** of the resource.
+Resources are deleted by sending an HTTP DELETE request to the URL that the resource is located at. This is the URL that contains the **id** of the resource.

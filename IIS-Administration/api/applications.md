@@ -71,7 +71,7 @@ Applications provide a method to differentiate sections of a web site. An applic
 }
 ```
 
-### Retrieving Applications for a Web Site
+### Retrieving applications for a web site
 
 The applications that belong to a web site can retrieved by providing the website id in the GET request. [Web site](sites.md) resources contain the link required to access their applications in their [HAL](hal.md).
 
@@ -121,7 +121,7 @@ Creating an application. **POST** _/api/webserver/webapps_
 }
 ```
 
-### Using a Specific Application Pool
+### Using a specific application pool
 
 To create an application in a specific application pool, add the **application_pool** property to the request body.
 

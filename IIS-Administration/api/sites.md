@@ -126,7 +126,7 @@ The bindings of a web site determine what ports, protocols, and hostnames the si
 
 Creating a web site requires a physical path to store the web site, the name of the web site, and a set of bindings that the web site should listen on.
 
-### Creating an HTTP Enabled Web Site
+### Creating an HTTP enabled web site
 
 Creating a web site that listens on port 8081. **POST** _/api/webserver/websites_
 ```
@@ -143,7 +143,7 @@ Creating a web site that listens on port 8081. **POST** _/api/webserver/websites
 }
 ```
 
-### Creating an HTTPS Enabled Web Site
+### Creating an HTTPS enabled web site
 
 To create a site with an HTTPS binding, a certificate must provided in the binding object. Certificates are a resource available through the _/api/certificates_ endpoint. To specify the desired certificate in the binding, add the certificate resource and specify the certificate **id** as shown below.
 
@@ -165,7 +165,7 @@ Creating a web site that listens for HTTPS requests on port 8082.  **POST** _/ap
 }
 ```
 
-### Creating in a specific Application Pool
+### Creating in a specific application pool
 
 To specify which application pool that a web site should be created for, add the *application_pool* property to the body of the request. The application pool is identified solely by its *id* property.
 

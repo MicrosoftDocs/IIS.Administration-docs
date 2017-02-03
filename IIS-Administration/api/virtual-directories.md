@@ -30,7 +30,7 @@ Virtual directories provide a way to create the virtaul file hierarchy that a we
 }
 ```
 
-### Retrieving Virtual Directories for a Web Site
+### Retrieving virtual directories for a Web Site
 
 The virtual directories that belong to a web site can retrieved by providing the website id in the GET request. [Web site](sites.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
 
@@ -62,7 +62,7 @@ Listing the virtual directories of a website. **GET** */api/webserver/virtual-di
 }
 ```
 
-### Retrieving Virtual Directories for an application
+### Retrieving virtual directories for an application
 
 The virtual directories that belong to an application can retrieved by providing the application id in the GET request. [Web application](applications.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
 
