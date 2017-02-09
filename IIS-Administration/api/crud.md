@@ -27,15 +27,15 @@ Creating a resource while setting the name property. **POST**
 
 ### Creating a resource that belongs to another
 
-Sometimes resources are created that are meant to belong to another resource. For example, if _products_ must belong to a grocery store and someone wanted to create a new _product_ then they would specify that relationship during the creation of the product as shown below.
+Sometimes resources are created that are meant to belong to another resource. For example, if _applications_ must belong to a web site and someone wanted to create a new _application_ then they would specify that relationship during the creation of the application as shown below.
 
-Creating a product for a grocery store. **POST**
+Creating an application for a web site. **POST**
 ```
 {
-    "name": "Apple",
-    "price": ".35",
-    **"grocery_store"**: {
-        "id": {grocery_store_id}
+    "path": "/MyApp",
+    "physical_path": "c:/sites/mysite/myapp",
+    **"website"**: {
+        "id": {website_id}
     }
 }
 ```
@@ -103,12 +103,12 @@ Updates are performed by issuing HTTP PATCH requests to the URL that the resourc
 ### Example resource before PATCH
 ```
 {
-    "name": "Apple",
+    "name": "My Site",
     "id": "12345",
-    "price": ".35",
+    "physical_path": "c:\\sites\\mysite"
     "_links": {
         "self": {
-            "href": "/api/products/12345"
+            "href": "/api/webserver/websites/{12345}"
         }
     }
 }
@@ -116,22 +116,22 @@ Updates are performed by issuing HTTP PATCH requests to the URL that the resourc
 
 ### Performing the PATCH request
 
-Patch request to update the name of the resource. **PATCH** _/api/products/12345_
+Patch request to update the name of the resource. **PATCH** _/api/webserver/websites/12345_
 ```
 {
-    "name": "Orange"
+    "name": "My Site 2"
 }
 ```
 
 ### Resource after PATCH
 ```
 {
-    "name": "Orange",
+    "name": "My Site 2",
     "id": "12345",
-    "price": ".35",
+    "physical_path": "c:\\sites\\mysite"
     "_links": {
         "self": {
-            "href": "/api/products/12345"
+            "href": "/api/webserver/websites/{12345}"
         }
     }
 }
