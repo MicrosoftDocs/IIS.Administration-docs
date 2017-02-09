@@ -34,7 +34,7 @@ Creating an application for a web site. **POST**
 {
     "path": "/MyApp",
     "physical_path": "c:/sites/mysite/myapp",
-    **"website"**: {
+    "website": {
         "id": {website_id}
     }
 }
