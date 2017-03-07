@@ -13,11 +13,15 @@ Every request to the API requires an access token. If a request is made to the A
 
 ## Generating Tokens
 
-Access tokens can be generated in multiple ways. The predominant method is through the built in [API Explorer](../api-explorer/index.md) for the API. The explorer has an "ACCESS KEYS" link at the top right. Clicking this link will lead to the access token management page. Here access tokens can be generated, deleted, and refreshed. Access tokens should be created with a descriptive purpose and one access token should be created for one user.
+Access tokens can be generated in multiple ways. The predominant method is through the built in [API Explorer](../api-explorer/index.md). Access tokens can also be generated programatically through the [API keys](../api/api-keys.md) endpoint. 
+
+### Generating Tokens Through The API Explorer
+
+The API explorer has an "ACCESS KEYS" link at the top right. Clicking this link will lead to the access token management page. Here access tokens can be generated, deleted, and refreshed. Access tokens should be created with a descriptive purpose and one access token should be created for one user.
 
 ![Generating an access token][generate]
 
-Alternatively, the API offers a method to generate API keys using the /security/api-keys route. 
+Alternatively, the API offers a method to programatically [generate API keys](../api/api-keys.md).
 
 ## Securing Tokens
 
