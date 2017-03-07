@@ -56,6 +56,7 @@ Creating an API key is a special task that requires two requests. The extra requ
 
 ```
 Client                                                                                      Server
+|                                                                                                |
 | GET /security/api-keys                                                                         |
 | ---------------------------------------------->                                                |
 |                                                                                                |
