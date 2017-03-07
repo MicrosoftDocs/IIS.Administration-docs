@@ -4,7 +4,7 @@ uid: api/request-tracing
 
 # HTTP Request Tracing
 
-HTTP request tracing is a feature of IIS that provides a way to determine exactly what is happening with a request. This includes any form of authentication, what handler was used, and how long each step took in the pipeline. Enabling request tracing is a useful way to diagnose unexpected or undesirable behavior.
+HTTP request tracing is a feature of IIS that provides a way to determine what exactly is happening with a request. This includes any form of authentication, which handler was used, and how long each step took in the pipeline. Enabling request tracing is a useful way to diagnose unexpected or undesirable behavior.
 
 ## Feature Settings (/api/webserver/http-request-tracing)
 
