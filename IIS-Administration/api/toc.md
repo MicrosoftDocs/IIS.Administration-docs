@@ -3,6 +3,7 @@
 # [Sites](sites.md)
 # [Applications](applications.md)
 # [Virtual Directories](virtual-directories.md)
+# [Worker Processes](worker-processes.md)
 # [Request Tracing](request-tracing.md)
 # [Files](files.md)
 # [API Keys](api-keys.md)
