@@ -10,6 +10,7 @@ HTTP request tracing is a feature of IIS that provides a way to determine what e
 
 The HTTP request tracing feature creates trace files based on a configured set of rules. The information in the trace files is determined by what providers are avaialable for that rule. The feature settings for request tracing deal with the generation of the trace files.
 
+**GET** _/api/webserver/http-request-tracing/{request-tracing-id}_
 ```
 {
     "id": "{request-tracing-id}",
@@ -39,6 +40,7 @@ The HTTP request tracing feature creates trace files based on a configured set o
 
 The providers for HTTP request tracing determine what information will be provided whenever a trace rule is triggered. IIS comes with a set of default providers that provide most of the information a consumer will want.
 
+**GET** _/api/webserver/http-request-tracing/providers/{provider-id}_
 ```
 {
     "name": "ASPNET",
@@ -66,6 +68,7 @@ The providers for HTTP request tracing determine what information will be provid
 
 Trace rules generate request tracing logs whenever a request is executed that meets the conditions specified in the trace rule. Trace rules can trigger based on status code, execution time, and path.
 
+**GET** _/api/webserver/http-request-tracing/rules/{rule-id}_
 ```
 {
     "path": "*",
@@ -123,7 +126,7 @@ Trace rules generate request tracing logs whenever a request is executed that me
 
 A request tracing rule must specify which request tracing section it belongs to when it is being created, and also should specify any providers that should log information for the generated log file. In this example a rule is created that only generates trace logs for requests to _index.html_. The logs will include information from the _WWW Server_ trace provider.
 
-POST
+POST _/api/webserver/http-request-tracing/rules_
 ```
 {
     "path": "index.html",
@@ -161,6 +164,7 @@ POST
 
 The Microsoft IIS Administration API provides an endpoint to view data for the trace logs that have been generated. This information helps quickly determine which trace file is of interest instead of having to open each file individually.
 
+**GET** _/api/webserver/http-request-tracing/traces/{trace-id}_
 ```
 {
     "id": "{trace-id}",
