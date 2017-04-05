@@ -126,7 +126,7 @@ Trace rules generate request tracing logs whenever a request is executed that me
 
 A request tracing rule must specify which request tracing section it belongs to when it is being created, and also should specify any providers that should log information for the generated log file. In this example a rule is created that only generates trace logs for requests to _index.html_. The logs will include information from the _WWW Server_ trace provider.
 
-POST _/api/webserver/http-request-tracing/rules_
+**POST** _/api/webserver/http-request-tracing/rules_
 ```
 {
     "path": "index.html",

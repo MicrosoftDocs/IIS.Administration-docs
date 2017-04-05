@@ -112,7 +112,7 @@ The following settings allow read/write access to _%systemdrive%\inetpub_ and re
         "allow": true
       },
       {
-        "origin": "https://My-Organizations-Custom-UI.com",
+        "origin": "https://contoso.com",
         "allow": true
       }
     ]
@@ -124,8 +124,7 @@ The following settings allow read/write access to _%systemdrive%\inetpub_ and re
         "alias": "inetpub",
         "path": "%systemdrive%\\inetpub",
         "claims": [
-          "read",
-          "write"
+          "read"
         ]
       }
     ]
