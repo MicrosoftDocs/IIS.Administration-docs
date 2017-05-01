@@ -2130,7 +2130,7 @@
         "Certificate": {
             "type": "object",
             "properties": {
-                "name": {
+                "alias": {
                     "type": "string"
                 },
                 "id": {
@@ -2145,9 +2145,62 @@
                 "thumbprint": {
                     "type": "string"
                 },
+                "signature_algorithm": {
+                    "type": "string"
+                },
+                "valid_from": {
+                    "type": "string",
+                    "format": "date"
+                },
                 "valid_to": {
                     "type": "string",
                     "format": "date"
+                },
+                "version": {
+                    "type": "number"
+                },
+                "intended_purposes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "private_key": {
+                    "type": "object",
+                    "properties": {
+                        "exportable": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "subject_alternative_names": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "store": {
+                    "$ref": "#/definitions/CertificateStore"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "CertificateStore": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "claims": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"

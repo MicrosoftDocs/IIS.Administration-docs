@@ -2,7 +2,7 @@
 uid: api/certificates
 ---
 
-# The Certificates Resource
+# The Certificate Resource
 
 Certificates provide the mechanism for web servers to prove their identity as well as secure communication channels. The certificates API is essential to creating web sites that serve content over HTTPS.
 
@@ -44,16 +44,17 @@ Certificates provide the mechanism for web servers to prove their identity as we
 
 ## Range Requests
 
-It is not uncommon for a web server to have a very large amount of certificates. To improve usability of the certificates API for servers with a large amount of certificates, the endpoint supports range requests. Sending a HEAD request to the certificates endpoint will prompt the server to respond with the total number of certificates that are available. The certificates can then be requested in chunks by setting the *Range* header in subsequent requests.
+It is not uncommon for a web server to have a very large amount of certificates. To improve usability of the certificates API for servers with a large amount of certificates, the endpoint supports range requests. Sending a HEAD request to the certificates endpoint will prompt the server to respond with the total number of certificates that are available in the _X-Total-Count_ HTTP header. The certificates can then be requested in chunks by setting the *Range* header in subsequent requests.
 
-*Range* request for a second set of 50 certificates
+Setting the HTTP *Range* header to request a second set of 50 certificates
+
 ```
 Range: certificates=50-99
 ```
 
-# Certificate stores
+## Certificate stores
 
-All certificates belong to a certificate store. The certificate stores that are visible through the API can be retreived at the certificate stores endpoint _/api/certificates/stores_. This list of stores can be configured in the [application settings](../configuration/appsettings.json.md) files. These certificate stores have a _claims_ property which specify what operations are allowed on the certificates inside the store. While currently reading is the only available operation, importing, exporting, deleting, and creating certificates are planned.
+All certificates belong to a certificate store. A list of the available certificate stores can be retreived from the certificate stores endpoint _/api/certificates/stores_. These certificate stores have a _claims_ property which specify what operations are allowed on the certificates inside the store. This access is configurable via the certificates section of the [application settings](../configuration/appsettings.json.md) file. Currently certificate stores only support read operations. In the future the API may support importing, exporting, deleting, and creating certificates.
 
 **GET** _/api/certificates/stores_
 
@@ -87,7 +88,7 @@ All certificates belong to a certificate store. The certificate stores that are 
 
 The certificates API supports filtering certificates by store. To do this, the _id_ property of the target certificate store should be retreived. This can be done through the certificate stores endpoint. Then a request should be made to the certificates endpoint that specifies the _store.id_ field in the query string. The following request will retreive all certificates for the built in _Web Hosting_ certificate store.
 
-*GET* _/api/certificates?store.id={web-hosting-store-id}_
+**GET** _/api/certificates?store.id={store-id}_
 
 ```
 {

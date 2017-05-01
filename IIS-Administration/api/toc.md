@@ -9,6 +9,7 @@
 # [Central Certificate Store](centralized-certificates.md)
 # [Request Tracing](request-tracing.md)
 # [API Keys](api-keys.md)
+# [Installing Features](installing-features.md)
 # [CRUD](crud.md)
 # [HAL](hal.md)
 # [API Specification](iis.administration.swagger.json)
