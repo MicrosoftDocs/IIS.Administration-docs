@@ -10,13 +10,14 @@ IIS and its components are exposed by Windows as optional features. This provide
 
 The first step of managing a feature is to check if it is installed. For any IIS feature we can determine this by sending a request to its API endpoint. If the endpoint returns a _200 OK_ response, the feature is installed. If the feature is not installed, the API will return a _404 Not Found_ response with a _Feature Not Installed_ JSON error object in the body. This example will use the default document feature of IIS. We check to see if the default document is enabled by sending a GET request to the default document endpoint. We use _scope_ in the query string with an empty value to specify that we are targetting the web server scope.
 
-### Feature Is Not Installed
-
 **GET** _/api/webserver/default-documents?scope=_
 
-_404 Not Found_
+**Feature Is Not Installed**
 
 ```
+404 Not Found
+
+
 {
     "title": "Not found",
     "detail": "IIS feature not installed",
@@ -25,13 +26,12 @@ _404 Not Found_
 }
 ```
 
-### Feature Is Installed
-
-**GET** _/api/webserver/default-documents?scope=_
-
-_200 OK_ 
+**Feature Is Installed**
 
 ```
+200 OK
+
+
 {
     "id": "{id}",
     "enabled": "true",
@@ -48,17 +48,16 @@ _200 OK_
 
 ## Installing a Feature
 
-For most features, installation as simple as sending a POST request with an empty JSON object as the body. Some IIS features such as the [Central Certificate Store](centralized-certificates.md) require initial settings to be provided when installing. The default document feature is one of the IIS components that can be enabled through a basic POST request. Supposing the default document endpoint was returning the _404 Feature Not Installed_ response, we can send a POST request to install it.
+Feature installation is performed by issuing a _POST_ request to the feature's endpoint. Some IIS features such as the [Central Certificate Store](centralized-certificates.md) require initial settings to be provided when installing. As an example, suppose the default document feature was returning the _404 Feature Not Installed_ response. Sending a _POST_ request to to the default documents endpoint installs the feature and then returns the features settings.
 
 **POST** _/api/webserver/default-documents_
 
-**Request Body:**
+**HTTP Response**
 ```
-{  }
-```
+201 CREATED
+Location: /api/webserver/default-documents/{id}
 
-**Response Body:**
-```
+
 {
     "id": "{id}",
     "enabled": "true",
@@ -72,3 +71,31 @@ For most features, installation as simple as sending a POST request with an empt
     "website": null
 }
 ```
+
+## Uninstalling a Feature
+
+IIS features can be uninstalled by issuing a _DELETE_ request to the feature at the web server level. For IIS features that support configuration at web site and application levels, one can verify that the object represents the web server scope by ensuring the _scope_ field is empty. 
+
+First get the URI of the feature to uninstall.
+
+**GET** _/api/webserver_
+
+```
+{
+    "id": "{id}",
+    "_links": {
+        ... // Other features omitted
+        "default_document": {
+            "href": "/api/webserver/default-documents/{def-doc-id}"
+        }
+    }
+}
+```
+
+Then, issue the _DELETE_ request to the features endpoint
+
+**DELETE** _/api/webserver/default-documents/{def-doc-id}_
+
+`
+204 NO CONTENT
+`
