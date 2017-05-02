@@ -44,12 +44,22 @@ Certificates provide the mechanism for web servers to prove their identity as we
 
 ## Range Requests
 
-It is not uncommon for a web server to have a very large amount of certificates. To improve usability of the certificates API for servers with a large amount of certificates, the endpoint supports range requests. Sending a HEAD request to the certificates endpoint will prompt the server to respond with the total number of certificates that are available in the _X-Total-Count_ HTTP header. The certificates can then be requested in chunks by setting the *Range* header in subsequent requests.
+It is not uncommon for a web server to have a very large amount of certificates. To improve usability of the certificates API for these servers, the endpoint supports range requests. Sending a HEAD request to the certificates endpoint will prompt the server to respond with the total number of certificates that are available in the _X-Total-Count_ HTTP header. The certificates can then be requested in chunks by setting the *Range* header in subsequent requests.
 
-Setting the HTTP *Range* header to request a second set of 50 certificates
+
+**HEAD** _/api/certificates_
 
 ```
-Range: certificates=50-99
+200 OK
+x-total-count: 100
+```
+
+Retreiving the second and third certificates out of 100
+
+```
+GET /api/certificates
+Access-Token: Bearer {Access-Token}
+Range: certificates=1-2
 ```
 
 ## Certificate stores
