@@ -7,7 +7,7 @@ uid: configuration/appsettings.json
 All of the application's settings are contained in a file named appsettings.json. Any changes to the appsettings.json file will require restarting the "Microsoft IIS Administration" service to take effect.
 
 The appsettings.json file is located at: 
-`IIS Administration\<version>\Microsoft.IIS.Administration\config\appsettings.json`
+`%SystemDrive%\Program Files\IIS Administration\<version>\Microsoft.IIS.Administration\config\appsettings.json`
 
 ## CORS
 

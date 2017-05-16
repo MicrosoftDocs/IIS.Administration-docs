@@ -48,7 +48,13 @@ The Central Certificate Store settings can be modified using a PATCH request wit
 
 ## Disabling CCS
 
-To disable the Central Certificate Store, a DELETE request should be sent to the CCS endpoint _/api/webserver/centralized-certificates/{id}_.
+To disable the Central Certificate Store, a DELETE request should be sent to the CCS endpoint.
+
+**DELETE** _/api/webserver/centralized-certificates/{id}_
+
+`
+204 No Content
+`
 
 ## Reading CCS Certificates
 

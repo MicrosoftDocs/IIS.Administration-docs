@@ -19,7 +19,7 @@ When the installation has completed successfully the connect screen will appear.
 
 ![Finished installing Microsoft IIS Administration API][connect]
 
-### Acquiring an Access Token
+## Acquiring an Access Token
 
 Clicking the "Get Access Token" link under the Access Token field will open up the [access tokens](../security/access-tokens.md) page of the [API explorer](../api-explorer/index.md). Once at the access key creation screen, create a key to enable access to the API from the management portal. When an access key is generated the expiration time of the key can be set and a purpose can be provided. A good purpose will tell the reader who the key belongs to, where it is being used, and how it is being used. The creation of an access key will display an associated _access token_. This is the private value that is used on the GUI connection screen and it should not be shared.
 
