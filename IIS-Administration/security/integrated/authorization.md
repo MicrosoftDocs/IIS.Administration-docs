@@ -4,6 +4,8 @@ uid: security/integrated/authorization
 
 # Authorization
 
+This article is **deprecated** as of IIS Administration 2.0.0. and has been replaced by the [appsettings security section](../../configuration/appsettings.json.md)
+
 By default the Microsoft IIS Administration API only allows access to windows users that are part of the _Administrators_ and _IIS Administrators_ groups. The _IIS Administrators_ group is generated during installation of the API and the installing user is automatically added to the group.
 
 ## Route Based Authorization

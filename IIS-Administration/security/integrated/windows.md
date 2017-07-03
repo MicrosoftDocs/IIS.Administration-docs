@@ -4,6 +4,8 @@ uid: security/integrated/windows
 
 # Windows Authentication
 
+This article is **deprecated** as of IIS Administration 2.0.0. and has been replaced by the [appsettings security section](../../configuration/appsettings.json.md)
+
 Out of the box, the Microsoft IIS Administration API utilizes IIS's windows authentication module to authenticate users. These settings are specified in the [web.config](web.config.md) file. The windows authentication module restricts access to the API to to users in the _Administrators_ and _IIS Administrators_ groups. By manipulating the [web.config](web.config.md) file, one can alter the requirements for windows authentication. If windows authentication is removed access tokens become the sole mechanism for security.
 
 ## Browser Access
