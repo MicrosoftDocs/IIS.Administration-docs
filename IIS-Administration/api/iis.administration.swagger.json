@@ -2697,7 +2697,7 @@
                 }
             },
             "delete": {
-                "operationId": "RevertProviders",
+                "operationId": "RevertRewriteMaps",
                 "summary": "Resets the settings for the targetted rewrite maps section to the settings of its parent in the configuration hierarchy.",
                 "parameters": [
                     {
