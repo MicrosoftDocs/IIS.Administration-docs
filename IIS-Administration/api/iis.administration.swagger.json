@@ -3,7 +3,7 @@
     "info": {
         "title": "IIS Administration",
         "description": "Administer IIS",
-        "version": "1.0.1"
+        "version": "2.1.0"
     },
     "host": "localhost:55539",
     "schemes": [
@@ -1589,6 +1589,1490 @@
                     }
                 }
             }
+        },
+        "/api/webserver/url-rewrite/{id}": {
+            "get": {
+                "operationId": "GetUrlRewrite",
+                "summary": "Retrieve the Url Rewrite resource which is used to link to the features of Url Rewrite such as inbound and outbound rewrite rules.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewrite"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "InstallUrlRewrite",
+                "summary": "Installs Url Rewrite for the web server",
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewrite"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "UninstallUrlRewrite",
+                "summary": "Uninstalls Url Rewrite for the web server",
+                "responses": {
+                    "204": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/allowed-server-variables/{id}": {
+            "get": {
+                "operationId": "GetAllowedServerVariables",
+                "summary": "Retrieve the allowed server variables resource.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/AllowedServerVariablesSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateAllowedServerVariables",
+                "summary": "Updates the allowed server variables settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the allowed server variables resource",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/AllowedServerVariablesSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "AllowedServerVariables"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/AllowedServerVariablesSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertAllowedServerVariables",
+                "summary": "Resets the settings for the targeted allowed server variables section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/inbound/{id}": {
+            "get": {
+                "operationId": "GetInboundRulesSection",
+                "summary": "Retrieve the inbound rules section resource which contains the settings general settings and links to the list of inbound rules for the targeted scope.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRulesSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateInboundRulesSection",
+                "summary": "Updates the inbound rules settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the inbound rules section",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRulesSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "InboundRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRulesSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertInboundRules",
+                "summary": "Resets the settings for the targeted inbound rules section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/inbound/rules": {
+            "get": {
+                "operationId": "GetInboundRules",
+                "summary": "Get the inbound rules for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of inbound rules.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "rules": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/InboundRule"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateInboundRule",
+                "summary": "Creates an inbound rule at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "InboundRule",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRule"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The rule was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRule"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/inbound/rules/{id}": {
+            "get": {
+                "operationId": "GetInboundRuleById",
+                "summary": "Get a specific inbound rule for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRule"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteInboundRule",
+                "summary": "Removes an inbound rule from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateInboundRule",
+                "summary": "Update the inbound rule for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "rule",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRule"
+                        }
+                    }
+                ],
+                "tags": [
+                    "InboundRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/InboundRule"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/{id}": {
+            "get": {
+                "operationId": "GetOutboundRulesSection",
+                "summary": "Retrieve the outbound rules section resource which contains the settings general settings and links to the list of outbound rules for the targeted scope.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRulesSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateOutboundRulesSection",
+                "summary": "Updates the outbound rules settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the outbound rules section",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRulesSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "OutboundRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRulesSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertOutboundRules",
+                "summary": "Resets the settings for the targeted outbound rules section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/rules": {
+            "get": {
+                "operationId": "GetOutboundRules",
+                "summary": "Get the outbound rules for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of outbound rules.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "rules": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/OutboundRule"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateOutboundRule",
+                "summary": "Creates an outbound rule at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "OutboundRule",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRule"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The rule was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRule"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/rules/{id}": {
+            "get": {
+                "operationId": "GetOutboundRuleById",
+                "summary": "Get a specific outbound rule for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRule"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteOutboundRule",
+                "summary": "Removes an outbound rule from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateOutboundRule",
+                "summary": "Update the outbound rule for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "rule",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRule"
+                        }
+                    }
+                ],
+                "tags": [
+                    "OutboundRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/OutboundRule"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/preconditions": {
+            "get": {
+                "operationId": "GetPreconditions",
+                "summary": "Get the preconditions for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of preconditions.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "preconditions": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Precondition"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreatePrecondition",
+                "summary": "Creates an precondition at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "Precondition",
+                        "schema": {
+                            "$ref": "#/definitions/Precondition"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The precondition was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/Precondition"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/preconditions/{id}": {
+            "get": {
+                "operationId": "GetPreconditionById",
+                "summary": "Get a specific precondition for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/Precondition"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeletePrecondition",
+                "summary": "Removes an precondition from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdatePrecondition",
+                "summary": "Update the precondition for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "precondition",
+                        "schema": {
+                            "$ref": "#/definitions/Precondition"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Preconditions"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Precondition"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/custom_tags": {
+            "get": {
+                "operationId": "GetCustomTagSets",
+                "summary": "Get the custom tag sets for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of custom tag sets.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "custom_tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CustomTagSet"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateCustomTagSet",
+                "summary": "Creates an custom tag set at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "CustomTagSet",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The custom tag set was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/outbound/custom_tags/{id}": {
+            "get": {
+                "operationId": "GetCustomTagSetById",
+                "summary": "Get a specific custom tag set for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteCustomTagSet",
+                "summary": "Removes an custom tag set from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateCustomTagSet",
+                "summary": "Update the custom tag set for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "custom tag set",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    }
+                ],
+                "tags": [
+                    "CustomTagSets"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/providers/{id}": {
+            "get": {
+                "operationId": "GetProvidersSection",
+                "summary": "Retrieve the providers section resource which contains the settings general settings and links to the list of providers for the targetted scope.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvidersSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateRewriteProvidersSection",
+                "summary": "Updates the providers settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the providers section",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvidersSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Providers"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvidersSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertProviders",
+                "summary": "Resets the settings for the targetted providers section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/providers/entries": {
+            "get": {
+                "operationId": "GetUrlRewriteProviders",
+                "summary": "Get the provider entries for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of provider entries.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "entries": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UrlRewriteProvider"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateUrlRewriteProvider",
+                "summary": "Creates an provider entry at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "UrlRewriteProvider",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvider"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The rule was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvider"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/providers/entries/{id}": {
+            "get": {
+                "operationId": "GetUrlRewriteProviderById",
+                "summary": "Get a specific provider entry for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvider"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteUrlRewriteProvider",
+                "summary": "Removes an provider entry from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateUrlRewriteProvider",
+                "summary": "Update the provider entry for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "rule",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvider"
+                        }
+                    }
+                ],
+                "tags": [
+                    "UrlRewriteProviders"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteProvider"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/rewrite-maps/{id}": {
+            "get": {
+                "operationId": "GetRewriteMapsSection",
+                "summary": "Retrieve the rewrite maps section resource which contains the settings general settings and links to the list of rewrite maps for the targetted scope.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteRewriteMapsSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateRewriteMapsSection",
+                "summary": "Updates the rewrite maps settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the rewrite maps section",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteRewriteMapsSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Providers"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteRewriteMapsSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertProviders",
+                "summary": "Resets the settings for the targetted rewrite maps section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/rewrite-maps/entries": {
+            "get": {
+                "operationId": "GetUrlRewriteMaps",
+                "summary": "Get the rewrite map entries for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of rewrite map entries.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "entries": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/UrlRewriteMap"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateUrlRewriteMap",
+                "summary": "Creates an rewrite map entry at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "UrlRewriteMap",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteMap"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The rule was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteMap"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/rewrite-maps/entries/{id}": {
+            "get": {
+                "operationId": "GetUrlRewriteMapById",
+                "summary": "Get a specific rewrite map entry for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteMap"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteUrlRewriteMap",
+                "summary": "Removes an rewrite map entry from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateUrlRewriteMap",
+                "summary": "Update the rewrite map entry for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "rule",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteMap"
+                        }
+                    }
+                ],
+                "tags": [
+                    "UrlRewriteMaps"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/UrlRewriteMap"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/global/{id}": {
+            "get": {
+                "operationId": "GetGlobalRulesSection",
+                "summary": "Retrieve the global rules section resource which contains the settings general settings and links to the list of global rules for the targeted scope.",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRulesSection"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateGlobalRulesSection",
+                "summary": "Updates the global rules settings.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the global rules section",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "feature",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRulesSection"
+                        }
+                    }
+                ],
+                "tags": [
+                    "GlobalRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRulesSection"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "RevertGlobalRules",
+                "summary": "Resets the settings for the targeted global rules section to the settings of its parent in the configuration hierarchy.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/global/rules": {
+            "get": {
+                "operationId": "GetGlobalRules",
+                "summary": "Get the global rules for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "url_rewrite.id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of global rules.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "rules": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/GlobalRule"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "operationId": "CreateGlobalRule",
+                "summary": "Creates an global rule at the scope specified by the url_rewrite property",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "GlobalRule",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRule"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The rule was created successfully. The resource's location is in the location header.",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRule"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/webserver/url-rewrite/global/rules/{id}": {
+            "get": {
+                "operationId": "GetGlobalRuleById",
+                "summary": "Get a specific global rule for the Url Rewrite feature at a certain level in the configuration",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRule"
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DeleteGlobalRule",
+                "summary": "Removes an global rule from the Url Rewrite feature at a given scope in the configuration feature.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "required": false,
+                        "description": "Specifies the location of the configuration file to edit.",
+                        "type": "string",
+                        "name": "config_scope"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "UpdateGlobalRule",
+                "summary": "Update the global rule for the Url Rewrite feature at a given scope in the configuration feature",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "required": true,
+                        "name": "rule",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRule"
+                        }
+                    }
+                ],
+                "tags": [
+                    "GlobalRules"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/GlobalRule"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -2482,6 +3966,681 @@
                 },
                 "default_document": {
                     "$ref": "#/definitions/DefaultDocument"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "UrlRewrite": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique identifier for the Url Rewrite feature."
+                },
+                "scope": {
+                    "description": "The location in the configuration system that this resource reflects.",
+                    "type": "string"
+                },
+                "website": {
+                    "$ref": "#/definitions/WebSite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "AllowedServerVariablesSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "entries": {
+                  "type": "array",
+                  "items":{
+                      "type": "string"
+                  }
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "InboundRulesSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "use_original_url_encoding": {
+                    "type": "boolean"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "InboundRuleCondition": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "type": "string"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "negate": {
+                    "type": "boolean"
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "match_type": {
+                    "type": "string",
+                    "enum": [
+                        "pattern",
+                        "is_file",
+                        "is_directory"
+                    ]
+                }
+            }
+        },
+        "InboundRuleAction": {
+            "type": "object",
+            "properties": {
+                "type" : {
+                    "type": "string",
+                    "enum": [
+                        "rewrite",
+                        "redirect",
+                        "custom_response",
+                        "abort_request",
+                        "none"
+                    ]
+                },
+                "url": {
+                    "type": "string"
+                },
+                "append_query_string": {
+                    "type": "boolean"
+                },
+                "log_rewritten_url": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "InboundRule": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "pattern_syntax": {
+                    "type": "string",
+                    "enum": [
+                        "exact_match",
+                        "regular_expression",
+                        "wildcard"
+                    ]
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "negate": {
+                    "type": "boolean"
+                },
+                "stop_processing": {
+                    "type": "boolean"
+                },
+                "response_cache_directive": {
+                    "type": "string",
+                    "enum": [
+                        "auto",
+                        "always",
+                        "never",
+                        "not_if_rule_matched"
+                    ]
+                },
+                "condition_match_constraints": {
+                    "type": "string",
+                    "enum": [
+                        "match_all",
+                        "match_any"
+                    ]
+                },
+                "track_all_captures": {
+                    "type": "boolean"
+                },
+                "action": {
+                    "$ref": "#/definitions/InboundRuleAction"
+                },
+                "server_variables": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InboundRuleCondition"
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "GlobalRulesSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "use_original_url_encoding": {
+                    "type": "boolean"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "GlobalRuleCondition": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "type": "string"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "negate": {
+                    "type": "boolean"
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "match_type": {
+                    "type": "string",
+                    "enum": [
+                        "pattern",
+                        "is_file",
+                        "is_directory"
+                    ]
+                }
+            }
+        },
+        "GlobalRuleAction": {
+            "type": "object",
+            "properties": {
+                "type" : {
+                    "type": "string",
+                    "enum": [
+                        "rewrite",
+                        "redirect",
+                        "custom_response",
+                        "abort_request",
+                        "none"
+                    ]
+                },
+                "url": {
+                    "type": "string"
+                },
+                "append_query_string": {
+                    "type": "boolean"
+                },
+                "log_rewritten_url": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "GlobalRule": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "pattern_syntax": {
+                    "type": "string",
+                    "enum": [
+                        "exact_match",
+                        "regular_expression",
+                        "wildcard"
+                    ]
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "negate": {
+                    "type": "boolean"
+                },
+                "stop_processing": {
+                    "type": "boolean"
+                },
+                "response_cache_directive": {
+                    "type": "string",
+                    "enum": [
+                        "auto",
+                        "always",
+                        "never",
+                        "not_if_rule_matched"
+                    ]
+                },
+                "condition_match_constraints": {
+                    "type": "string",
+                    "enum": [
+                        "match_all",
+                        "match_any"
+                    ]
+                },
+                "track_all_captures": {
+                    "type": "boolean"
+                },
+                "action": {
+                    "$ref": "#/definitions/GlobalRuleAction"
+                },
+                "server_variables": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            },
+                            "replace": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GlobalRuleCondition"
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "Precondition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "match": {
+                    "type": "string",
+                    "enum": [
+                        "any",
+                        "all"
+                    ]
+                },
+                "pattern_syntax": {
+                    "type": "string",
+                    "enum": [
+                        "exact_match",
+                        "regular_expression",
+                        "wildcard"
+                    ]
+                },
+                "requirements": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InboundRuleCondition"
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "CustomTagSet": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "attribute": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "OutboundRulesSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "rewrite_before_cache": {
+                    "type": "boolean"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "OutboundRule": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "precondition": {
+                    "$ref": "#/definitions/Precondition"
+                },
+                "match_type": {
+                    "type": "string",
+                    "enum": [
+                        "response",
+                        "server_variable"
+                    ]
+                },
+                "tag_filters": {
+                    "type": "object",
+                    "properties": {
+                        "a": {
+                            "type": "boolean"
+                        },
+                        "area": {
+                            "type": "boolean"
+                        },
+                        "base": {
+                            "type": "boolean"
+                        },
+                        "form": {
+                            "type": "boolean"
+                        },
+                        "frame": {
+                            "type": "boolean"
+                        },
+                        "head": {
+                            "type": "boolean"
+                        },
+                        "iframe": {
+                            "type": "boolean"
+                        },
+                        "img": {
+                            "type": "boolean"
+                        },
+                        "input": {
+                            "type": "boolean"
+                        },
+                        "link": {
+                            "type": "boolean"
+                        },
+                        "script": {
+                            "type": "boolean"
+                        },
+                        "custom": {
+                            "$ref": "#/definitions/CustomTagSet"
+                        }
+                    }
+                },
+                "server_variable": {
+                    "type": "string"
+                },
+                "pattern": {
+                    "type": "string"
+                },
+                "pattern_syntax": {
+                    "type": "string",
+                    "enum": [
+                        "exact_match",
+                        "regular_expression",
+                        "wildcard"
+                    ]
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "negate": {
+                    "type": "boolean"
+                },
+                "stop_processing": {
+                    "type": "boolean"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "rewrite_value": {
+                    "type": "string"
+                },
+                "condition_match_constraints": {
+                    "type": "string",
+                    "enum": [
+                        "match_all",
+                        "match_any"
+                    ]
+                },
+                "track_all_captures": {
+                    "type": "boolean"
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InboundRuleCondition"
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "UrlRewriteProvidersSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "UrlRewriteProvider": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "settings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "UrlRewriteRewriteMapsSection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "metadata": {
+                    "$ref": "#/definitions/metadata"
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "UrlRewriteMap": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "default_value": {
+                    "type": "string"
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "mappings": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "url_rewrite": {
+                    "$ref": "#/definitions/UrlRewrite"
                 },
                 "_links": {
                     "$ref": "#/definitions/_links"
