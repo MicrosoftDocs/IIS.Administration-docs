@@ -6,6 +6,7 @@
 # [Worker Processes](worker-processes.md)
 # [Certificates](certificates.md)
 # [Files](files.md)
+# [Monitoring](monitoring.md)
 # [Central Certificate Store](centralized-certificates.md)
 # [Request Tracing](request-tracing.md)
 # [API Keys](api-keys.md)
