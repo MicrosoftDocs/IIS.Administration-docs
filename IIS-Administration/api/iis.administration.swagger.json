@@ -3,7 +3,7 @@
     "info": {
         "title": "IIS Administration",
         "description": "Administer IIS",
-        "version": "2.1.0"
+        "version": "2.2.0"
     },
     "host": "localhost:55539",
     "schemes": [
@@ -1374,6 +1374,196 @@
                 "responses": {
                     "204": {
                         "description": "success"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/monitoring": {
+            "get": {
+                "operationId": "GetWebServerSnapshot",
+                "summary": "Retreives a performance and monitoring snapshot of the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select specific fields for the snapshot.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebServer",
+                    "Snapshot",
+                    "Performance",
+                    "Monitoring"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The performance and monitoring snapshot.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "websites": {
+                                    "type": "Object",
+                                    "items": {
+                                        "$ref": "#/definitions/WebServerSnapshot"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/websites/monitoring": {
+            "get": {
+                "operationId": "GetWebSiteSnapshots",
+                "summary": "Lists performance and monitoring snapshots for web sites on the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select specific fields for the websites.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebSite",
+                    "Snapshot",
+                    "Performance",
+                    "Monitoring"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of web sites.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "websites": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/WebSiteSnapshot"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/websites/monitoring/{id}": {
+            "get": {
+                "operationId": "GetWebSiteSnapshotById",
+                "summary": "View the performance and monitoring snapshot for a specific web site.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the web site",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "WebSite",
+                    "Snapshot",
+                    "Performance",
+                    "Monitoring"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The performance and monitoring snapshot of thew web site with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/WebSiteSnapshot"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/application-pools/monitoring": {
+            "get": {
+                "operationId": "GetApplicationPoolSnapshots",
+                "summary": "Lists performance and monitoring snapshots for application pools on the web server.",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "description": "Select specific fields for the application pools.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool",
+                    "Snapshot",
+                    "Performance",
+                    "Monitoring"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An object containing the array of application pools.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "websites": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ApplicationPoolSnapshot"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/default"
+                    }
+                }
+            }
+        },
+        "/api/webserver/application-pools/monitoring/{id}": {
+            "get": {
+                "operationId": "GetApplicationPoolSnapshotById",
+                "summary": "View the performance and monitoring snapshot for a specific application pool.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id for the application pool",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "ApplicationPool",
+                    "Snapshot",
+                    "Performance",
+                    "Monitoring"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The performance and monitoring snapshot of thew application pool with the specified id.",
+                        "schema": {
+                            "$ref": "#/definitions/ApplicationPoolSnapshot"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
                     },
                     "default": {
                         "$ref": "#/responses/default"
@@ -3926,6 +4116,424 @@
                 "file": {
                     "description": "The file info for the destination file.",
                     "$ref": "#/definitions/File"
+                }
+            }
+        },
+        "WebServerSnapshot": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "network": {
+                    "type": "object",
+                    "properties": {
+                        "bytes_sent_sec": {
+                            "type": "number"
+                        },
+                        "bytes_recv_sec": {
+                            "type": "number"
+                        },
+                        "connection_attempts_sec": {
+                            "type": "number"
+                        },
+                        "total_bytes_sent": {
+                            "type": "number"
+                        },
+                        "total_bytes_recv": {
+                            "type": "number"
+                        },
+                        "total_connection_attempts": {
+                            "type": "number"
+                        },
+                        "current_connections": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "active": {
+                            "type": "number"
+                        },
+                        "per_sec": {
+                            "type": "number"
+                        },
+                        "total": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "memory": {
+                    "type": "object",
+                    "properties": {
+                        "handles": {
+                            "type": "number"
+                        },
+                        "private_bytes": {
+                            "type": "number"
+                        },
+                        "private_working_set": {
+                            "type": "number"
+                        },
+                        "system_in_use": {
+                            "type": "number"
+                        },
+                        "installed": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cpu": {
+                    "type": "object",
+                    "properties": {
+                        "threads": {
+                            "type": "number"
+                        },
+                        "processes": {
+                            "type": "number"
+                        },
+                        "percent_usage": {
+                            "type": "number"
+                        },
+                        "system_percent_usage": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "disk": {
+                    "type": "object",
+                    "properties": {
+                        "io_write_operations_sec":{
+                            "type": "number"
+                        },
+                        "io_read_operations_sec": {
+                            "type": "number"
+                        },
+                        "page_faults_sec": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cache": {
+                    "type": "object",
+                    "properties": {
+                        "file_cache_count": {
+                            "type": "number"
+                        },
+                        "file_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "file_cache_hits": {
+                            "type": "number"
+                        },
+                        "file_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_files_cached": {
+                            "type": "number"
+                        },
+                        "output_cache_count": {
+                            "type": "number"
+                        },
+                        "output_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "output_cache_hits": {
+                            "type": "number"
+                        },
+                        "output_cache_misses": {
+                            "type": "number"
+                        },
+                        "uri_cache_count": {
+                            "type": "number"
+                        },
+                        "uri_cache_hits": {
+                            "type": "number"
+                        },
+                        "uri_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_uris_cached": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "WebSiteSnapshot": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "uptime": {
+                    "type": "number"
+                },
+                "network": {
+                    "type": "object",
+                    "properties": {
+                        "bytes_sent_sec": {
+                            "type": "number"
+                        },
+                        "bytes_recv_sec": {
+                            "type": "number"
+                        },
+                        "connection_attempts_sec": {
+                            "type": "number"
+                        },
+                        "total_bytes_sent": {
+                            "type": "number"
+                        },
+                        "total_bytes_recv": {
+                            "type": "number"
+                        },
+                        "total_connection_attempts": {
+                            "type": "number"
+                        },
+                        "current_connections": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "active": {
+                            "type": "number"
+                        },
+                        "per_sec": {
+                            "type": "number"
+                        },
+                        "total": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "memory": {
+                    "type": "object",
+                    "properties": {
+                        "handles": {
+                            "type": "number"
+                        },
+                        "private_bytes": {
+                            "type": "number"
+                        },
+                        "private_working_set": {
+                            "type": "number"
+                        },
+                        "system_in_use": {
+                            "type": "number"
+                        },
+                        "installed": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cpu": {
+                    "type": "object",
+                    "properties": {
+                        "threads": {
+                            "type": "number"
+                        },
+                        "processes": {
+                            "type": "number"
+                        },
+                        "percent_usage": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "disk": {
+                    "type": "object",
+                    "properties": {
+                        "io_write_operations_sec":{
+                            "type": "number"
+                        },
+                        "io_read_operations_sec": {
+                            "type": "number"
+                        },
+                        "page_faults_sec": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cache": {
+                    "type": "object",
+                    "properties": {
+                        "file_cache_count": {
+                            "type": "number"
+                        },
+                        "file_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "file_cache_hits": {
+                            "type": "number"
+                        },
+                        "file_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_files_cached": {
+                            "type": "number"
+                        },
+                        "output_cache_count": {
+                            "type": "number"
+                        },
+                        "output_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "output_cache_hits": {
+                            "type": "number"
+                        },
+                        "output_cache_misses": {
+                            "type": "number"
+                        },
+                        "uri_cache_count": {
+                            "type": "number"
+                        },
+                        "uri_cache_hits": {
+                            "type": "number"
+                        },
+                        "uri_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_uris_cached": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "website": {
+                    "$ref": "#/definitions/WebSite"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
+                }
+            }
+        },
+        "ApplicationPoolSnapshot": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "uptime": {
+                    "type": "number"
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "active": {
+                            "type": "number"
+                        },
+                        "per_sec": {
+                            "type": "number"
+                        },
+                        "total": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "memory": {
+                    "type": "object",
+                    "properties": {
+                        "handles": {
+                            "type": "number"
+                        },
+                        "private_bytes": {
+                            "type": "number"
+                        },
+                        "private_working_set": {
+                            "type": "number"
+                        },
+                        "system_in_use": {
+                            "type": "number"
+                        },
+                        "installed": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cpu": {
+                    "type": "object",
+                    "properties": {
+                        "threads": {
+                            "type": "number"
+                        },
+                        "processes": {
+                            "type": "number"
+                        },
+                        "percent_usage": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "disk": {
+                    "type": "object",
+                    "properties": {
+                        "io_write_operations_sec":{
+                            "type": "number"
+                        },
+                        "io_read_operations_sec": {
+                            "type": "number"
+                        },
+                        "page_faults_sec": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "cache": {
+                    "type": "object",
+                    "properties": {
+                        "file_cache_count": {
+                            "type": "number"
+                        },
+                        "file_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "file_cache_hits": {
+                            "type": "number"
+                        },
+                        "file_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_files_cached": {
+                            "type": "number"
+                        },
+                        "output_cache_count": {
+                            "type": "number"
+                        },
+                        "output_cache_memory_usage": {
+                            "type": "number"
+                        },
+                        "output_cache_hits": {
+                            "type": "number"
+                        },
+                        "output_cache_misses": {
+                            "type": "number"
+                        },
+                        "uri_cache_count": {
+                            "type": "number"
+                        },
+                        "uri_cache_hits": {
+                            "type": "number"
+                        },
+                        "uri_cache_misses": {
+                            "type": "number"
+                        },
+                        "total_uris_cached": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "application_pool": {
+                    "$ref": "#/definitions/ApplicationPool"
+                },
+                "_links": {
+                    "$ref": "#/definitions/_links"
                 }
             }
         },

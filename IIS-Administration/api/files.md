@@ -180,3 +180,25 @@ POST
 ## Using File Shares
 
 The files API can be used to manage files located on file shares. To enable this functionality, the file share must allow the necessary file system permissions to the principal representing the machine that the API is running on. As an example, suppose there is shared content located at _\\\\share\images_ and we want to allow an API running on a web server named _web-prod-1_ to enumerate these files. To allow this, an administrator must modify the ACL of the  _\\\\share\images_ directory to allow READ access to the _web-prod-1_ Active Directory object. Once this is done the service on the _web-prod-1_ machine will be able to access this directory, read the files, and then expose them through the API.
+
+## Locations - File API Roots (/api/files/locations)
+
+The API's file system access is limited to a set of root folders, called locations, that are specified in the [appsettings](../configuration/appsettings.json.md#files) file. These locations appear as roots from the perspective of the file API but on the physical drive they may be nested folders, the root of a drive, or even a network share. For each location, read and write access is controlled independently. Any paths on the file system that do not fall within a location will not be seen by the file system API. 
+
+Starting with version 2.2.0, location settings are accessible through the _/api/files/locations_ endpoint. This endpoint is locked down to users in the [_owners_](../configuration/appsettings.json.md#security) user group of the API. This means Windows Authentication is required to access the locations endpoint. Adding or removing locations will add or remove file system access from the API. This endpoint supports GET, PATCH, POST, and DELETE for creating, editing, and deleting existing locations. Editing locations has no effect on the physical files, it only manipulates the API's view of the file system.
+
+The Default Locations Configuration
+```
+{
+    "locations": [
+        {
+            "alias": "inetpub",
+            "id": "{id}",
+            "path": "C:\\inetpub",
+            "claims": [
+                "read"
+            ]
+        }
+    ]
+}
+```
