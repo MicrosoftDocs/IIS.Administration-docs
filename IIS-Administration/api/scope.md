@@ -14,10 +14,10 @@ The IIS configuration system is a hierarchy that extends from the root web serve
 
 Querying configuration at a certain path is done by using the *scope* query filter.
 
-Example:
+Example (query string is not URL encoded for readability):
 
 ```
-GET https://localhost:55539/api/webserver/http-request-filtering?Default Web Site/MyApp/MyFolder
+GET https://localhost:55539/api/webserver/http-request-filtering?scope=Default Web Site/MyApp/MyFolder
 ```
 
 This request will tell the API to query the request filtering settings for the MyFolder directory within the MyApp application of the Default Web Site. The request filtering resource that is returned will have the *id* necessary to modify the settings at that level within the configuration system.
