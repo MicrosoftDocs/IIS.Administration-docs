@@ -32,6 +32,7 @@
     "globalMetadata": {},
     "fileMetadata": {},
     "template": [],
-    "dest": "_site"
+    "dest": "_site",
+    "markdownEngineName": "markdig"
   }
 }
