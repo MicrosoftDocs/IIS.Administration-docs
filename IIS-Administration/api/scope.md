@@ -6,8 +6,8 @@ uid: api/scope
 
 The IIS configuration system is a hierarchy that extends from the root web server configuration to as far down as individual folders with a web application. The root configuration file is named _applicationHost.config_ and it resides in the IIS installation directory. The rest of a web application's configuration exists in web.config files within the application's directories. One benefit of using web.config files is that application's can introduce configuration at different paths without affecting the web server as a whole. At the same time, it is possible to define configuration in the root _applicationHost.config_ that targets only a specific path inside a specific web application. This means there are two different ways to think of configuration scoping.
 
- 1. Reading/modifying configuration for an arbitrary path of a web application.
- 2. Modifying configuration for a specific path, but placing the configuration in a configuration file at a higher level in the configuration hierarchy.
+1. Reading/modifying configuration for an arbitrary path of a web application.
+2. Modifying configuration for a specific path, but placing the configuration in a configuration file at a higher level in the configuration hierarchy.
    * Example: Modifying a setting for *Default Web Site/MyApp/MyFolder* and placing it in the web.config file located in the root of *Default Web Site*
 
 ## Targeting a Specific Path Within a Web Application

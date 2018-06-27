@@ -33,9 +33,9 @@ The following enables CORS for [manage.iis.net](https://manage.iis.net)
 
 __rules__: A set of CORS rules to control how the API shares resources.
 
- * __origin__: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, **&ast;**, is provided as the origin, that rule will apply to all origins.
+* **origin**: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, **&ast;**, is provided as the origin, that rule will apply to all origins.
 
- * __allow__: Indicates whether resources should be shared to the specified origin.
+* __allow__: Indicates whether resources should be shared to the specified origin.
 
 ## Files
 

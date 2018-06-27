@@ -118,5 +118,4 @@ The certificates API supports filtering certificates by store. To do this, the _
         }
     ]
 }
-
 ```
