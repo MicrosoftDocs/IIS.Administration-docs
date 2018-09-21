@@ -30,7 +30,20 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {},
-    "fileMetadata": {},
+    "globalMetadata": {
+      "breadcrumb_path": "/iis/breadcrumb/toc.json",
+      "_navPath": "/foo",
+      "_navRel": "/foo",
+      "searchScope": ""
+    },
+    "fileMetadata": {
+      "ms.technology": {
+        "**/**.md": "iis-admin"
+      },
+      "ms.topic": {
+        "**/**.md": "conceptual"
+      }
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig"
