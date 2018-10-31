@@ -29,19 +29,18 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
     "globalMetadata": {
-      "breadcrumb_path": "/iis/breadcrumb/toc.json",
-      "_navPath": "/foo",
-      "_navRel": "/foo",
-      "searchScope": ""
+      "author": "shirhatti",
+      "ms.author": "Sourabh.Shirhatti",
+      "ms.topic": "conceptual",
+      "searchScope": [  "IIS-Administration" ]
     },
     "fileMetadata": {
       "ms.technology": {
         "**/**.md": "iis-admin"
       },
       "ms.topic": {
-        "**/**.md": "conceptual"
+        "iis-administration/api/**/**.md": "reference"
       }
     },
     "template": [],
