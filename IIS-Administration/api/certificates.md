@@ -1,4 +1,7 @@
 ---
+title: 
+description: 
+ms.date: 10/30/2016
 uid: api/certificates
 ---
 

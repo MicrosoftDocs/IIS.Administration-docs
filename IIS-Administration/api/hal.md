@@ -1,4 +1,7 @@
 ---
+title: Hypertext Application Language (HAL)
+description: The IIS Administration API includes special data in all of its resources called Hypertext Application Language
+ms.date: 10/30/2016
 uid: api/hal
 ---
 

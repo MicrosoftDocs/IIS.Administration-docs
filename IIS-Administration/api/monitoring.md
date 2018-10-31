@@ -1,4 +1,7 @@
 ---
+title: Monitoring
+description: The monitoring API provides performance and health data for the web server, web sites, and application pools.
+ms.date: 10/30/2016
 uid: api/monitoring
 ---
 
