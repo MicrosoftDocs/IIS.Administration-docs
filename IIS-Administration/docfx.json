@@ -33,12 +33,12 @@
       "author": "shirhatti",
       "ms.author": "Sourabh.Shirhatti",
       "ms.topic": "conceptual",
-      "searchScope": [  "IIS-Administration" ],
-      "ms.technology": {
-        "**/**.md": "iis-admin"
-      }
+      "searchScope": [  "IIS-Administration" ]
     },
-    "fileMetadata": {      
+    "fileMetadata": {
+      "ms.technology": {
+            "**/**.md": "iis-admin"
+      },     
       "ms.topic": {
         "iis-administration/api/**/**.md": "reference"
       }
