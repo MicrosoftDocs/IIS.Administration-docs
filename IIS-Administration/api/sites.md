@@ -137,7 +137,7 @@ Creating a web site that listens on port 8081. **POST** _/api/webserver/websites
         {
             "protocol": "HTTP",
             "port": "8081",
-            "ip_address": *
+            "ip_address": "*"
         }
     ]
 }
@@ -156,7 +156,7 @@ Creating a web site that listens for HTTPS requests on port 8082.  **POST** _/ap
         {
             "protocol": "HTTPS",
             "port": "8082",
-            "ip_address": *,
+            "ip_address": "*",
             "certificate": {
                 "id": {certificate_id}
             }
@@ -178,7 +178,7 @@ Creating a web site for a specific application pool. **POST** _/api/webserver/we
         {
             "protocol": "HTTP",
             "port": "8081",
-            "ip_address": *
+            "ip_address": "*"
         }
     ],
     "application_pool": {
@@ -202,12 +202,12 @@ Adding a binding to a web site. **PATCH** _/api/webserver/websites/{id}_
         {
             "protocol": "HTTP",
             "port": "80",
-            "ip_address": *
+            "ip_address": "*"
         },
         {
             "protocol": "HTTP",
             "port": "8080",
-            "ip_address": *
+            "ip_address": "*"
         }
     ]
 }
