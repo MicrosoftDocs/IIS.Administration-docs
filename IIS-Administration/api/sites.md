@@ -135,7 +135,7 @@ Creating a web site that listens on port 8081. **POST** _/api/webserver/websites
     "physical_path": "C:\\inetpub\\wwwroot\\DemonstrationSite",
     "bindings": [
         {
-            "protocol": "HTTP",
+            "protocol": "http",
             "port": "8081",
             "ip_address": "*"
         }
@@ -154,7 +154,7 @@ Creating a web site that listens for HTTPS requests on port 8082.  **POST** _/ap
     "physical_path": "C:\\inetpub\\wwwroot\\DemonstrationSite",
     "bindings": [
         {
-            "protocol": "HTTPS",
+            "protocol": "https",
             "port": "8082",
             "ip_address": "*",
             "certificate": {
@@ -176,7 +176,7 @@ Creating a web site for a specific application pool. **POST** _/api/webserver/we
     "physical_path": "C:\\inetpub\\wwwroot\\DemonstrationSite",
     "bindings": [
         {
-            "protocol": "HTTP",
+            "protocol": "http",
             "port": "8081",
             "ip_address": "*"
         }
@@ -200,12 +200,12 @@ Adding a binding to a web site. **PATCH** _/api/webserver/websites/{id}_
 {
     "bindings": [
         {
-            "protocol": "HTTP",
+            "protocol": "http",
             "port": "80",
             "ip_address": "*"
         },
         {
-            "protocol": "HTTP",
+            "protocol": "http",
             "port": "8080",
             "ip_address": "*"
         }
