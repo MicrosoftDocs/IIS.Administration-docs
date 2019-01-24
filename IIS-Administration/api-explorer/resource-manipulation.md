@@ -1,4 +1,7 @@
 ---
+title: Interacting with Resources
+description: The API Explorer enables resources to be retrieved, updated, created and deleted
+ms.date: 10/30/2016
 uid: api-explorer/resource-manipulation
 ---
 

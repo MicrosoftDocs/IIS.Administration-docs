@@ -1,4 +1,7 @@
 ---
+title: API Explorer
+description: The Microsoft IIS Administration API comes with a built in interface called the API Explorer.
+ms.date: 10/30/2016
 uid: api-explorer/index
 ---
 

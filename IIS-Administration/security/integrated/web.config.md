@@ -1,4 +1,7 @@
 ---
+title: Web.Config
+description: This article is deprecated as of IIS Administration 2.0.0.
+ms.date: 10/30/2016
 uid: security/integrated/web.config
 ---
 

@@ -1,4 +1,7 @@
 ---
+title: The Worker Process Resource
+description: Worker processes provide the execution environment for all web sites and applications configured in IIS
+ms.date: 10/30/2016
 uid: api/worker-processes
 ---
 

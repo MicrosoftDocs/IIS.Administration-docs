@@ -1,4 +1,7 @@
 ---
+title: The Virtual Directory Resource
+description: Virtual directories provide a way to create the virtaul file hierarchy that a web site requires.
+ms.date: 10/30/2016
 uid: api/virtual-directories
 ---
 

@@ -1,4 +1,7 @@
 ---
+title: CRUD (Create, Read, Update, Delete)
+description: The IIS Administration API provides direct access to resources on the system.
+ms.date: 10/30/2016
 uid: api/crud
 ---
 
