@@ -1,4 +1,7 @@
 ---
+title: The Central Certificate Store
+description: The Central Certificate Store (CCS) feature of IIS provided a mechanism to place certificates in a file share for use by multiple web servers
+ms.date: 10/30/2016
 uid: api/centralized-certificates
 ---
 

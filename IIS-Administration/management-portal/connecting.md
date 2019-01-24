@@ -1,4 +1,7 @@
 ---
+title: Connecting to the Management Portal
+description: The web based manager is the perfect way to administer IIS machines.
+ms.date: 10/30/2016
 uid: management-portal/connecting
 ---
 

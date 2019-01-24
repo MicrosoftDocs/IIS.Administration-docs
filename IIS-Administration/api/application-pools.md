@@ -1,4 +1,7 @@
 ---
+title: The Application Pool Resource
+description: Application pools provide an isolation mechanism for processes on the web server.
+ms.date: 10/30/2016
 uid: api/application-pools
 ---
 
