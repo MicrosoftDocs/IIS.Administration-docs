@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: Api Keys
+description: The Microsoft IIS Administration API allows generation and viewing of API key information.
 ms.date: 10/30/2016
 uid: api/api-keys
 ---
