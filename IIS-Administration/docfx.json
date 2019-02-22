@@ -37,7 +37,11 @@
       "author": "shirhatti",
       "ms.author": "soshir"
     },
-    "fileMetadata": {},
+    "fileMetadata": {
+      "ms.topic": {
+        "iis-administration/api/**/**.md": "reference"
+      }    
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig"
