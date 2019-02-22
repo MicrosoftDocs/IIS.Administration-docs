@@ -29,8 +29,19 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
-    "fileMetadata": {},
+    "globalMetadata": {
+      "searchScope": ["IIS"],
+      "ms.prod": "iis",
+      "ms.technology": "iis-administration",
+      "ms.topic": "conceptual",
+      "author": "shirhatti",
+      "ms.author": "soshir"
+    },
+    "fileMetadata": {
+      "ms.topic": {
+        "iis-administration/api/**/**.md": "reference"
+      }    
+    },
     "template": [],
     "dest": "_site",
     "markdownEngineName": "markdig"
