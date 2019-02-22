@@ -29,7 +29,14 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {},
+    "globalMetadata": {
+      "searchScope": ["IIS"],
+      "ms.prod": "iis",
+      "ms.technology": "iis-administration",
+      "ms.topic": "conceptual",
+      "author": "shirhatti",
+      "ms.author": "soshir"
+    },
     "fileMetadata": {},
     "template": [],
     "dest": "_site",
