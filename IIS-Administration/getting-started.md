@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: Getting started with the Microsoft IIS Administration API.
+description: Getting started with the Microsoft IIS Administration API.
 ms.date: 10/30/2016
 uid: getting-started
 ---

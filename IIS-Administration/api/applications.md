@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: The Web Application Resource
+description: The application pool API allows consumers to create, read, delete, or update their application pools.
 ms.date: 10/30/2016
 uid: api/applications
 ---
