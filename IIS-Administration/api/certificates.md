@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: The Certificate Resource
+description: The certificates API is essential to creating web sites that serve content over HTTPS.
 ms.date: 10/30/2016
 uid: api/certificates
 ---

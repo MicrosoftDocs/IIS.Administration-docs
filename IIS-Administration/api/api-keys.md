@@ -1,6 +1,6 @@
 ---
-title: 
-description: 
+title: Api Keys
+description: The Microsoft IIS Administration API allows generation and viewing of API key information.
 ms.date: 10/30/2016
 uid: api/api-keys
 ---
@@ -53,7 +53,7 @@ GET _/security/api-keys/{api-key-id}_
 
 ## Creating an API Key
 
-Creating an API key is a special task that requires two requests. The extra request is used to prevent [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)). First the user must query the API keys endpoint and recieve a special token from the _XSRF-TOKEN_ header. Then the user can create the API key by specifying the _XSRF-TOKEN_ header in the creation request.
+Creating an API key is a special task that requires two requests. The extra request is used to prevent [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)). First the user must query the API keys endpoint and receive a special token from the _XSRF-TOKEN_ header. Then the user can create the API key by specifying the _XSRF-TOKEN_ header in the creation request.
 
 **Note:** XSRF-TOKEN is sent as an HTTP header.
 
