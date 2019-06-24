@@ -44,6 +44,6 @@
     },
     "template": [],
     "dest": "_site",
-    "markdownEngineName": "markdig"
+    "markdownEngineName": "dfm-latest"
   }
 }
