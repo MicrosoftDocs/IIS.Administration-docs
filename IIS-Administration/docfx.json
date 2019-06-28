@@ -30,7 +30,9 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
-      "searchScope": ["IIS"],
+      "searchScope": [
+        "IIS"
+      ],
       "ms.prod": "iis",
       "ms.technology": "iis-administration",
       "ms.topic": "conceptual",
@@ -40,10 +42,10 @@
     "fileMetadata": {
       "ms.topic": {
         "iis-administration/api/**/**.md": "reference"
-      }    
+      }
     },
     "template": [],
     "dest": "_site",
-    "markdownEngineName": "dfm-latest"
+    "markdownEngineName": "markdig"
   }
 }
