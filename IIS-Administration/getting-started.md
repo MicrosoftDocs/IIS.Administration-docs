@@ -14,7 +14,7 @@ uid: getting-started
 The Microsoft IIS Administration API supports Windows 7 and above.
 
 The IIS Administration API depends on .NET Core and will automatically download and install it if it is not present on the machine
-* [Microsoft .NET Core](https://www.microsoft.com/net/download) ([Direct Download](https://download.microsoft.com/download/7/8/5/7852163D-1A56-4642-84B6-60A8537343EF/dotnet-win-x64.1.0.5.exe))
+* [Microsoft .NET Core](https://www.microsoft.com/net/download)
 
 ## Installing
 
