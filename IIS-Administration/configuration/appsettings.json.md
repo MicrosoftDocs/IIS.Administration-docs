@@ -1,5 +1,6 @@
 ---
 uid: configuration/appsettings.json
+ms.date: 07/03/2017
 ---
 
 # Application Settings (appsettings.json)

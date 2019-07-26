@@ -1,5 +1,6 @@
 ---
 uid: api/files
+ms.date: 10/25/2017
 ---
 
 # Files

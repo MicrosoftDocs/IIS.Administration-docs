@@ -1,5 +1,6 @@
 ---
 uid: api/request-tracing
+ms.date: 04/05/2017
 ---
 
 # HTTP Request Tracing
