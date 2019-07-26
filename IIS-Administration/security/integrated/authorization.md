@@ -1,5 +1,6 @@
 ---
 uid: security/integrated/authorization
+ms.date: 07/03/2017
 ---
 
 # Authorization
