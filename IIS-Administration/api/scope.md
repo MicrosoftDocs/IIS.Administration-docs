@@ -1,5 +1,6 @@
 ---
 uid: api/scope
+ms.date: 03/12/2018
 ---
 
 # Scoping Configuration Changes/Access

@@ -1,5 +1,6 @@
 ---
 uid: configuration/appsettings.json
+ms.date: 07/03/2017
 ---
 
 # Application Settings (appsettings.json)
@@ -19,7 +20,7 @@ The IIS Administration API will not allow CORS for any origin if there are no _c
 
 ### Format
 
-The following enables CORS for [manage.iis.net](https://manage.iis.net)
+The following enables CORS for [manage.iis.net](https://manage.iis.net):
 ```
   "cors": {
     "rules": [
@@ -33,7 +34,7 @@ The following enables CORS for [manage.iis.net](https://manage.iis.net)
 
 __rules__: A set of CORS rules to control how the API shares resources.
 
-* **origin**: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, **&ast;**, is provided as the origin, that rule will apply to all origins.
+* **origin**: The origin, as defined in the [CORS](https://www.w3.org/TR/cors/) specification, to allow or deny. If the wild card character, \*, is provided as the origin, that rule will apply to all origins.
 
 * __allow__: Indicates whether resources should be shared to the specified origin.
 
@@ -176,7 +177,7 @@ Each access policy has a set of requirements that can be configured. The availab
         "access_key": true
       }
     }
-  }
+  },
 
   "cors": {
     "rules": [

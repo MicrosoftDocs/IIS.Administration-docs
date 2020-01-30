@@ -32,7 +32,9 @@
     "globalMetadata": {
       "breadcrumb_path": "/iis-administration/breadcrumb/toc.json",
 	    "extendBreadcrumb": "true",
-      "searchScope": ["IIS"],
+      "searchScope": [
+        "IIS"
+      ],
       "ms.prod": "iis",
       "ms.technology": "iis-administration",
       "ms.topic": "conceptual",
@@ -41,8 +43,12 @@
     },
     "fileMetadata": {
       "ms.topic": {
-        "iis-administration/api/**/**.md": "reference"
-      }    
+        "iis-administration/api/**/**.md": "reference",
+        "iis-administration/api/**/**.json": "reference"
+      },
+      "ms.date": {
+        "iis-administration/api/**/**.json": "10/25/2017"
+      }
     },
     "template": [],
     "dest": "_site",
