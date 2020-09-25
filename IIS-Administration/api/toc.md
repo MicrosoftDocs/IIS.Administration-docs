@@ -14,4 +14,3 @@
 # [CRUD](crud.md)
 # [Scoping Changes](scope.md)
 # [HAL](hal.md)
-# [API Specification](iis.administration.swagger.json)
