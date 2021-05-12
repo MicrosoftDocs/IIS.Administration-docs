@@ -1,13 +1,13 @@
 ---
 title: The Virtual Directory Resource
-description: Virtual directories provide a way to create the virtaul file hierarchy that a web site requires.
+description: Virtual directories provide a way to create the virtual file hierarchy that a web site requires.
 ms.date: 10/30/2016
 uid: api/virtual-directories
 ---
 
 # The Virtual Directory Resource
 
-Virtual directories provide a way to create the virtaul file hierarchy that a web site requires. The virtual directory API allows consumers to create, read, delete, or update their virtual directories.
+Virtual directories provide a way to create the virtual file hierarchy that a web site requires. The virtual directory API allows consumers to create, read, delete, or update their virtual directories.
 
 **GET** _/api/webserver/virtual-directories/{id}_
 ```
@@ -35,7 +35,7 @@ Virtual directories provide a way to create the virtaul file hierarchy that a we
 
 ### Retrieving virtual directories for a Web Site
 
-The virtual directories that belong to a web site can retrieved by providing the website id in the GET request. [Web site](sites.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
+The virtual directories that belong to a web site can be retrieved by providing the website id in the GET request. [Web site](sites.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
 
 Listing the virtual directories of a website. **GET** */api/webserver/virtual-directories?website.id={website_id}*
 ```
@@ -67,7 +67,7 @@ Listing the virtual directories of a website. **GET** */api/webserver/virtual-di
 
 ### Retrieving virtual directories for an application
 
-The virtual directories that belong to an application can retrieved by providing the application id in the GET request. [Web application](applications.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
+The virtual directories that belong to an application can be retrieved by providing the application id in the GET request. [Web application](applications.md) resources contain the link required to access their virtual directories in their [HAL](hal.md).
 
 Listing the virtual directories of an application. **GET** */api/webserver/virtual-directories?webapp.id={webapp_id}*
 ```
