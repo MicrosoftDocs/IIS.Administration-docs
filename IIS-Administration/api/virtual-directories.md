@@ -7,7 +7,7 @@ uid: api/virtual-directories
 
 # The Virtual Directory Resource
 
-Virtual directories provide a way to create the virtaul file hierarchy that a web site requires. The virtual directory API allows consumers to create, read, delete, or update their virtual directories.
+Virtual directories provide a way to create the virtual file hierarchy that a web site requires. The virtual directory API allows consumers to create, read, delete, or update their virtual directories.
 
 **GET** _/api/webserver/virtual-directories/{id}_
 ```
