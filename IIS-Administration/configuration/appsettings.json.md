@@ -12,7 +12,7 @@ The appsettings.json file is located at:
 
 ## CORS
 
-[CORS](https://www.w3.org/TR/cors/) policies allow browser based applications to send requests to the Microsoft IIS Administration API.  By default, [manage.iis.net](https://manage.iis.net) is the only origin that is allowed in the API's CORS policy.
+[CORS](https://www.w3.org/TR/cors/) policies allow browser based applications to send requests to the Microsoft IIS Administration API. 
 
 ### Default Settings
 
@@ -20,7 +20,7 @@ The IIS Administration API will not allow CORS for any origin if there are no _c
 
 ### Format
 
-The following enables CORS for [manage.iis.net](https://manage.iis.net):
+For example, the following enables CORS for a site called manage.iis.net:
 ```
   "cors": {
     "rules": [
