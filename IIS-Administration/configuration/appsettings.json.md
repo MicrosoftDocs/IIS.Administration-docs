@@ -20,12 +20,12 @@ The IIS Administration API will not allow CORS for any origin if there are no _c
 
 ### Format
 
-For example, the following enables CORS for a site called manage.iis.net:
+For example, the following enables CORS:
 ```
   "cors": {
     "rules": [
       {
-        "origin": "https://manage.iis.net",
+        "origin": "https://contoso.com",
         "allow": true
       }
     ]
@@ -181,10 +181,6 @@ Each access policy has a set of requirements that can be configured. The availab
 
   "cors": {
     "rules": [
-      {
-        "origin": "https://manage.iis.net",
-        "allow": true
-      },
       {
         "origin": "https://contoso.com",
         "allow": true
