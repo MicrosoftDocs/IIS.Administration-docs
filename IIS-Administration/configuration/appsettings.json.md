@@ -20,7 +20,7 @@ The IIS Administration API will not allow CORS for any origin if there are no _c
 
 ### Format
 
-For example, the following enables CORS:
+For example, the following setting enables CORS:
 ```
   "cors": {
     "rules": [
