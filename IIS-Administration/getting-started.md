@@ -20,4 +20,4 @@ The IIS Administration API depends on .NET Core and will automatically download 
 
 The latest version of the Microsoft IIS Administration API is available for download [here](http://go.microsoft.com/fwlink/?LinkId=829373).
 
-After installation is a perfect time to [configure](configuration/appsettings.json.md) the service for its intended purpose. To get a better idea of what the API has to offer take a look at the built-in [API explorer](api-explorer/index.md). 
+After installation is a perfect time to [configure](configuration/appsettings.json.md) the service for its intended purpose. To get a better idea of what the API has to offer, take a look at the built-in [API explorer](api-explorer/index.md). 
