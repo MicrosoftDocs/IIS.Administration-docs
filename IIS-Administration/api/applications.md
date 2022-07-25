@@ -118,8 +118,8 @@ Creating an application. **POST** _/api/webserver/webapps_
 {
     "path": "demo-app",
     "physical_path": "C:\\inetpub\\wwwroot\\demo-app",
-    "website: {
-        "id": {website_id}
+    "website": {
+        "id": "{website_id}"
     }
 }
 ```
@@ -133,11 +133,11 @@ Creating an application for a specific application pool. **POST** _/api/webserve
 {
     "path": "demo-app",
     "physical_path": "C:\\inetpub\\wwwroot\\demo-app",
-    "website: {
-        "id": {website_id}
+    "website": {
+        "id": "{website_id}"
     },
     "application_pool": {
-        "id": {application_pool_id}
+        "id": "{application_pool_id}"
     }
 }
 ```

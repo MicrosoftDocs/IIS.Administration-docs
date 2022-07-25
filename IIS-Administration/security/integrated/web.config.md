@@ -36,7 +36,7 @@ The web.config file is located at:
   </system.webServer>
   <!-- 
        ALWAYS PROTECTED SECURITY AREA 
-       THE HOST MUST PROVIDE ATHENTICATION
+       THE HOST MUST PROVIDE AUTHENTICATION
        
        [Windows Authentication]
        [Client Certificate Authentication]
