@@ -1,6 +1,7 @@
 ---
 uid: api/installing-features
 ms.date: 05/02/2017
+description: Learn how to install, check, and uninstall IIS components using the IIS Administration API. Simplify your IIS feature management with our guide.
 ---
 
 # Installing IIS Components
