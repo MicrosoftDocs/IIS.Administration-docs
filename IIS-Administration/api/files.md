@@ -1,6 +1,7 @@
 ---
 uid: api/files
 ms.date: 10/25/2017
+description: Explore the IIS Administration API for direct interaction with the file system. Deploy content, edit, and check file updates locally or remotely.
 ---
 
 # Files
