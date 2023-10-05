@@ -1,6 +1,7 @@
 ---
 uid: api/request-tracing
 ms.date: 04/05/2017
+description: Learn how to use HTTP request tracing in IIS to diagnose unexpected behavior. Discover how to create trace rules, view trace logs, and more.
 ---
 
 # HTTP Request Tracing
