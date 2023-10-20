@@ -8,8 +8,8 @@ ms.date: 03/07/2017
 Every request to the API requires an access token. If a request is made to the API without an access token, the API will respond with an HTTP 403 status code and will set the 'WWW-Authenticate' HTTP header to 'Bearer'. The API expects the access token to be in the _Access-Token_ header of every request. The value of the _Access-Token_ header should be 'Bearer ' followed by the access token being used to access the API.
 
 ```
-    GET /api
-    Access-Token: Bearer {Access-Token}
+GET /api
+Access-Token: Bearer {Access-Token}
 ```
 
 ## Generating Tokens
