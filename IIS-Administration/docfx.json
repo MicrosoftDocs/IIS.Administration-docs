@@ -30,12 +30,12 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "ms.subservice": "admin-api",
+      "ms.service": "iis",
       "feedback_system": "Standard",
       "searchScope": [
         "IIS"
       ],
-      "ms.prod": "iis",
-      "ms.technology": "iis-administration",
       "ms.topic": "conceptual",
       "author": "shirhatti",
       "ms.author": "soshir"
