@@ -95,7 +95,7 @@ Application pools provide an isolation mechanism for processes on the web server
 
 The only information required to create an application pool is a name.
 
-Creating an application pool. **POST** _/api/application-pools_
+Creating an application pool. **POST** _/api/webserver/application-pools_
 ```
 {
     "name": "Demonstration App Pool"
