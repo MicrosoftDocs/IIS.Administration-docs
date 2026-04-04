@@ -35,7 +35,7 @@ Web sites are a core entity of IIS that determine where and how requests will be
                 "id": "{certificate_id}",
                 "issued_by": "CN=localhost",
                 "subject": "CN=localhost",
-                "thumbprint": "2F6C0E796B8DAC4A1DDBF59F1714A19D9520B88A",
+                "thumbprint": "AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00",
                 "valid_to": "2022-01-09T00:00:00Z"
             },
             "require_sni": "false"
