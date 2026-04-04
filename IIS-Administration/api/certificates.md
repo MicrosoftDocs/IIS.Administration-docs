@@ -17,7 +17,7 @@ Certificates provide the mechanism for web servers to prove their identity as we
     "id": "{id}",
     "issued_by": "CN=localhost",
     "subject": "CN=localhost",
-    "thumbprint": "1E927A29E966FA11A7C469BC565A9E00B11F5F95",
+    "thumbprint": "AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00",
     "signature_algorithm": "sha256RSA",
     "valid_from": "2017-04-12T11:26:26Z",
     "valid_to": "2019-04-12T11:26:26Z",
@@ -111,7 +111,7 @@ The certificates API supports filtering certificates by store. To do this, the _
             "id": "{cert-id}",
             "issued_by": "CN=localhost",
             "subject": "CN=localhost",
-            "thumbprint": "8E7933F41998C507B30F0E0AC8B548A903FE7843",
+            "thumbprint": "BB22CC33DD44EE55FF66AA77BB88CC99DD00EE11",
             "valid_to": "2019-02-28T14:32:33Z",
             "_links": {
                 "self": {
